@@ -1,11 +1,12 @@
 @import url(../node_modules/modern-normalize/modern-normalize.css);
-/* @import "./styles/fonts.css";
-@import "./styles/variables.css"; */
+@import "./styles/fonts.css";
+@import "./styles/variables.css";
 
 body {
-  font-family: Roboto;
-  font-size: 16px;
+  font-family: Inter;
   font-weight: 400;
+  font-size: 16px;
+  background-color: #f3f3f3;
 }
 h1,
 h2,
@@ -34,4 +35,17 @@ img {
 }
 button {
   cursor: pointer;
+}
+.active {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    background-color: var(--green);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    left: 47%;
+  }
 }

@@ -1,0 +1,106 @@
+.heroSection {
+  display: flex;
+  align-items: center;
+  margin-top: 78px;
+  gap: 125px;
+}
+.leftSide {
+  max-width: 595px;
+}
+.title {
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 102%;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.titleSpan {
+  font-style: italic;
+  color: var(--green);
+}
+.text {
+  max-width: 510px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+.getStarted {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--light-green);
+  border-radius: 30px;
+  padding: 18px 45px;
+  color: var(--black);
+  width: 235px;
+  height: 60px;
+  white-space: nowrap;
+  background: var(--green);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--hover-green);
+  }
+}
+.rightSide {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.svgUsers {
+  position: absolute;
+  top: 38px;
+  right: -44px;
+}
+.svgQuestion {
+  position: absolute;
+  top: 185px;
+  left: -35px;
+}
+.heroImg {
+  border-radius: 10px;
+}
+.experience {
+  position: absolute;
+  bottom: 75px;
+  left: -101px;
+  background-color: var(--green);
+  padding: 32px;
+  border-radius: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  max-width: 311px;
+}
+.check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  width: 54px;
+  height: 54px;
+  border-radius: 13px;
+}
+.infoWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.infoText {
+  color: rgba(251, 251, 251, 0.5);
+  font-weight: 400;
+  font-size: 14px;
+}
+.infoNumber {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 24px;
+}

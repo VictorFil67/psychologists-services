@@ -1,0 +1,221 @@
+.background {
+  background-image: url(../../images/Background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
+}
+.header {
+  border-bottom: 1px solid rgba(25, 26, 21, 0.1);
+}
+/* .container {
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 0 20px;
+} */
+/* @media only screen and (min-width: 768px) { */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+/* } */
+.headerWrap {
+  height: 96px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navWrap {
+  position: relative;
+  display: flex;
+  gap: 130px;
+  align-items: center;
+}
+.logo {
+  /* margin-right: 130px; */
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+}
+.logoSpan {
+  color: var(--green);
+}
+/* .mobileOverlay {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #12121266;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in, visibility 0.3s ease-in;
+  transition-delay: 0.3s;
+} */
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 250px;
+  height: 50%;
+  padding-top: 30px;
+  border: 2px solid var(--green);
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: var(--white);
+  z-index: 100;
+  transition: transform 0.3s linear;
+  transform: translateX(100%);
+}
+.nav.active {
+  transform: translateX(0);
+}
+@media only screen and (min-width: 768px) {
+  .nav {
+    position: relative;
+    /* display: flex; */
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    min-width: 300px;
+    padding-top: 0;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    transform: translateX(0);
+  }
+}
+.buttonsWrap {
+  display: flex;
+  gap: 8px;
+}
+.loginButton {
+  padding: 5px 10px;
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  border-radius: 20px;
+  /* width: 124px;
+  height: 48px; */
+  white-space: nowrap;
+  font-weight: 500;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  display: flex;
+  place-items: center;
+  background-color: transparent;
+}
+@media only screen and (min-width: 768px) {
+  .loginButton {
+    padding: 14px 40px;
+    /* border: 1px solid rgba(25, 26, 21, 0.2); */
+    border-radius: 30px;
+    width: 124px;
+    height: 48px;
+    /* white-space: nowrap;
+    font-weight: 500;
+    line-height: 125%;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    display: flex;
+    place-items: center;
+    background-color: transparent; */
+  }
+}
+.registrationButton {
+  color: var(--black);
+  border: 1px solid var(--light-green);
+  padding: 5px 10px;
+  border-radius: 20px;
+  /* width: 171px;
+  height: 48px; */
+  white-space: nowrap;
+  background: var(--green);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  display: flex;
+  place-items: center;
+  /* cursor: pointer; */
+  /* transition: all 0.3s; */
+
+  &:hover {
+    background-color: var(--hover-green);
+  }
+}
+@media only screen and (min-width: 768px) {
+  .registrationButton {
+    /* color: var(--black);
+    border: 1px solid var(--light-green); */
+    padding: 14px 40px;
+    border-radius: 30px;
+    width: 171px;
+    height: 48px;
+    /* white-space: nowrap;
+    background: #54be96;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    display: flex;
+    place-items: center; */
+    /* cursor: pointer; */
+    /* transition: all 0.3s; */
+
+    /* &:hover {
+      background-color: var(--hover-green);
+    } */
+  }
+}
+.logoutButton {
+  padding: 14px 40px;
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  border-radius: 30px;
+  width: 135px;
+  height: 48px;
+  white-space: nowrap;
+  font-weight: 500;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  display: flex;
+  place-items: center;
+  background-color: transparent;
+}
+.avatar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-right: 28px;
+}
+.username {
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+.menuButton {
+  display: block;
+  /* margin-left: auto; */
+  width: 28px;
+  height: 24px;
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+}
+@media only screen and (min-width: 768px) {
+  .menuButton {
+    display: none;
+  }
+}

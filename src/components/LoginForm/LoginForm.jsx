@@ -39,6 +39,7 @@ export const LoginForm = ({ close }) => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
+        console.log("login");
         dispatch(
           setUser({
             user: {
@@ -51,7 +52,7 @@ export const LoginForm = ({ close }) => {
         );
 
         close();
-        toast.success(`Welcome`);
+        toast.success(`Welcome!`);
       })
       .catch((err) => {
         const errorCode = err.code;
