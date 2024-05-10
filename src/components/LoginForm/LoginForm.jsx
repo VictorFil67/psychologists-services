@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import s from "./LoginForm.module.css";
-import SvgClose from "../../images/SvgClose";
+import SvgClose from "../../images/modalIcons/SvgClose";
 import { useDispatch } from "react-redux";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "../../store/auth/authSlice";

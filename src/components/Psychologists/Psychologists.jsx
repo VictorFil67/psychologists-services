@@ -1,10 +1,13 @@
 // import { getDatabase, onValue, ref } from "firebase/database";
 // import { firebaseApp } from "../../firebase";
 // import { useCallback, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectPsychologists } from "../../store/psychologists/selectors";
 import { PsychologistCard } from "../PsychologistCard/PsychologistCard";
 import s from "./Psychologists.module.css";
 
-export const Psychologists = ({ psychologists }) => {
+export const Psychologists = () => {
+  const psychologists = useSelector(selectPsychologists);
   // const [dataDb, setDataDb] = useState([]);
 
   // const getData = useCallback(() => {

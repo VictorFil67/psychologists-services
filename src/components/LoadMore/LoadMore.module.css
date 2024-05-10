@@ -1,0 +1,12 @@
+.loadMoreWrap {
+  margin-bottom: 100px;
+  text-align: center;
+}
+.loadMore {
+  background-color: var(--green);
+  border: none;
+  border-radius: 30px;
+  padding: 14px 48px;
+  color: white;
+  margin: 0 auto;
+}
