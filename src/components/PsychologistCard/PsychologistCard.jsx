@@ -16,7 +16,6 @@ export const PsychologistCard = ({
   // reviews,
   specialization,
 }) => {
-  console.log(avatar_url);
   return (
     <>
       <li className={s.card}>
