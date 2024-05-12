@@ -1,3 +1,4 @@
+import { useState } from "react";
 import SvgHeart from "../../images/psychologistCard/SvgHeart";
 import SvgOnline from "../../images/psychologistCard/SvgOnline";
 import SvgStar from "../../images/psychologistCard/SvgStar";
@@ -16,6 +17,11 @@ export const PsychologistCard = ({
   // reviews,
   specialization,
 }) => {
+  const [readMore, setReadMore] = useState(false);
+  // const showMore = () => {
+  //   setReadMore(true);
+  // };
+
   return (
     <>
       <li className={s.card}>
@@ -78,7 +84,13 @@ export const PsychologistCard = ({
             </ul>
           </div>
           <p className={s.about}>{about}</p>
-          <button className={s.readMoreButton}>Read more</button>
+          {!readMore ? (
+            <button className={s.readMoreButton} onClick={setReadMore}>
+              Read more
+            </button>
+          ) : (
+            <div className={s.readMore}></div>
+          )}
         </div>
       </li>
     </>

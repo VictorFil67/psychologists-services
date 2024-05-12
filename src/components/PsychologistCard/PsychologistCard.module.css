@@ -97,6 +97,10 @@
   color: rgba(25, 26, 21, 0.5);
   margin-bottom: 14px;
 }
+.readMore {
+  height: 100px;
+  border: 2px solid red;
+}
 .readMoreButton {
   background-color: transparent;
   border: none;
