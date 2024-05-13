@@ -23,7 +23,7 @@ export const PsychologistsPage = () => {
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
   const sorted = useSelector(selectSorted);
-  const selected = 0;
+  const selected = 1;
   const limit = 3;
 
   // you can use both options: this one or the second one

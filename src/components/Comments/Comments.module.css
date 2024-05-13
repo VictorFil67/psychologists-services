@@ -1,0 +1,63 @@
+.commentList {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 48px;
+  li:last-child {
+    margin-bottom: 40px;
+    max-width: 758px;
+  }
+}
+.reviewer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+.reviewerImg {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+.avatar {
+  display: flex;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  background: rgba(84, 190, 150, 0.2);
+}
+.letter {
+  font-size: 20px;
+  font-weight: 500;
+  color: #54be96;
+  margin: auto;
+}
+.name {
+  font-weight: 500;
+  line-height: 1.25;
+}
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+}
+.comment {
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.5);
+}
+.appointment {
+  padding: 14px 32px;
+  font-weight: 500;
+  color: #fbfbfb;
+  background-color: var(--green);
+  border-radius: 30px;
+  border: none;
+  transition: all 0.3s;
+  &:hover {
+    background-color: var(--hover-green);
+  }
+}

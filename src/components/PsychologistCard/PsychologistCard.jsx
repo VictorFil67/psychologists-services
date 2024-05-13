@@ -3,6 +3,7 @@ import SvgHeart from "../../images/psychologistCard/SvgHeart";
 import SvgOnline from "../../images/psychologistCard/SvgOnline";
 import SvgStar from "../../images/psychologistCard/SvgStar";
 import s from "./PsychologistCard.module.css";
+import { Comments } from "../Comments/Comments";
 
 export const PsychologistCard = ({
   about,
@@ -14,7 +15,7 @@ export const PsychologistCard = ({
   price_per_hour,
   rating,
   // id,
-  // reviews,
+  reviews,
   specialization,
 }) => {
   const [readMore, setReadMore] = useState(false);
@@ -89,7 +90,9 @@ export const PsychologistCard = ({
               Read more
             </button>
           ) : (
-            <div className={s.readMore}></div>
+            // <div className={s.readMore}>
+            <Comments reviews={reviews} />
+            // </div>
           )}
         </div>
       </li>
