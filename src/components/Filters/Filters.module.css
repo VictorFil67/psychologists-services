@@ -1,0 +1,17 @@
+.wrap {
+  margin-top: 64px;
+  max-width: 224px;
+}
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a8a89;
+}
+Select {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a8a89;
+  margin-top: 8px;
+  border: none;
+  cursor: pointer;
+}

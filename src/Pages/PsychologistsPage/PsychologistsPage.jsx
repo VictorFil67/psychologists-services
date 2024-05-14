@@ -24,18 +24,19 @@ export const PsychologistsPage = () => {
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
   const sorted = useSelector(selectSorted);
-  // const selected = 1;
   const limit = 3;
 
-  const prevSelectedOptionRef = useRef();
-  useEffect(() => {
-    prevSelectedOptionRef.current = selectedOption;
-    console.log("useRef worked in useEffect");
-  });
-  const prevSelectedOption = prevSelectedOptionRef.current;
+  //Hook for getting the previous state
+  const usePrevios = (value) => {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  };
+  const prevSelectedOption = usePrevios(selectedOption);
   const prev = prevSelectedOption?.value;
   const now = selectedOption?.value;
-  console.log(`${prev} => ${now}`);
 
   // you can use both options: this one or the second one
   const getData = useCallback(() => {
@@ -63,8 +64,9 @@ export const PsychologistsPage = () => {
       }
       console.log(newData);
       console.log(data);
-
-      dispatch(setPsychologists(data));
+      if (data.length) {
+        dispatch(setPsychologists(data));
+      }
       console.log("getData end");
     });
   }, [dispatch, page]);
@@ -110,14 +112,18 @@ export const PsychologistsPage = () => {
 
   useEffect(() => {
     selectedOption ? getSortedData() : getData();
+    console.log("selectedOption ", selectedOption);
+    console.log("first");
   }, [getData, getSortedData, selectedOption]);
 
   useEffect(() => {
-    console.log(sorted);
-    console.log(page);
-    const data = sorted.slice(page * limit, page * limit + limit);
-    console.log(data);
-    dispatch(setPsychologists(data));
+    if (sorted.length) {
+      console.log(sorted);
+      console.log(page);
+      const data = sorted.slice(page * limit, page * limit + limit);
+      console.log("second");
+      dispatch(setPsychologists(data));
+    }
   }, [sorted, page, dispatch]);
 
   return (
