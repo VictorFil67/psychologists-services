@@ -1,7 +1,7 @@
 import { Psychologists } from "../../components/Psychologists/Psychologists";
 import { LoadMore } from "../../components/LoadMore/LoadMore";
 import { Filters } from "../../components/Filters/Filters";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   endAt,
   getDatabase,
@@ -20,11 +20,22 @@ import {
 import { selectPage, selectSorted } from "../../store/psychologists/selectors";
 
 export const PsychologistsPage = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
   const sorted = useSelector(selectSorted);
-  const selected = 1;
+  // const selected = 1;
   const limit = 3;
+
+  const prevSelectedOptionRef = useRef();
+  useEffect(() => {
+    prevSelectedOptionRef.current = selectedOption;
+    console.log("useRef worked in useEffect");
+  });
+  const prevSelectedOption = prevSelectedOptionRef.current;
+  const prev = prevSelectedOption?.value;
+  const now = selectedOption?.value;
+  console.log(`${prev} => ${now}`);
 
   // you can use both options: this one or the second one
   const getData = useCallback(() => {
@@ -54,7 +65,7 @@ export const PsychologistsPage = () => {
       console.log(data);
 
       dispatch(setPsychologists(data));
-      console.log("first");
+      console.log("getData end");
     });
   }, [dispatch, page]);
   // the second one
@@ -75,25 +86,31 @@ export const PsychologistsPage = () => {
     const dbRef = ref(database);
     const sortedData = [];
 
-    if (sorted.length === 0) {
-      const currentQuery = query(dbRef, orderByChild("name"));
+    if (sorted.length === 0 || prev !== now) {
+      const selectedValue = Object.values(selectedOption)[0].split(" ")[0];
+      const selectedOrder = Object.values(selectedOption)[0].split(" ")[1];
+      console.log(selectedOrder);
+      const currentQuery = query(dbRef, orderByChild(selectedValue));
       onValue(currentQuery, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
           const childKey = childSnapshot.key;
           const childData = childSnapshot.val();
-          console.log(`${childKey} : ${childData.name}`);
+          console.log(`${childKey} : ${childData[selectedValue]}`);
           sortedData.push(childData);
         });
-        // sortedData.reverse();
+
+        if (selectedOrder) {
+          sortedData.reverse();
+        }
         console.log(sortedData);
         dispatch(setSorted(sortedData));
       });
     }
-  }, [dispatch, sorted]);
+  }, [dispatch, sorted, selectedOption, prev, now]);
 
   useEffect(() => {
-    selected ? getSortedData() : getData();
-  }, [getData, getSortedData, selected]);
+    selectedOption ? getSortedData() : getData();
+  }, [getData, getSortedData, selectedOption]);
 
   useEffect(() => {
     console.log(sorted);
@@ -105,7 +122,10 @@ export const PsychologistsPage = () => {
 
   return (
     <>
-      <Filters />
+      <Filters
+        selectedOption={selectedOption}
+        setSelectedOption={setSelectedOption}
+      />
       <Psychologists />
       <LoadMore />
     </>

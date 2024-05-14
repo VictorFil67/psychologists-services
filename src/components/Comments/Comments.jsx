@@ -1,5 +1,5 @@
 import s from "./Comments.module.css";
-import unknown from "../../images/psychologistCard/unknown.png";
+// import unknown from "../../images/psychologistCard/unknown.png";
 import SvgStar from "../../images/psychologistCard/SvgStar";
 
 export const Comments = ({ reviews }) => {

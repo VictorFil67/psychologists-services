@@ -18,7 +18,7 @@ const psychologistsSlice = createSlice({
     },
     setSorted(state, { payload }) {
       state.sorted = payload;
-      // state.page = 0;
+      state.page = 0;
       // state.psychologists = [];
     },
   },
