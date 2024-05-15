@@ -1,7 +1,7 @@
 import { Psychologists } from "../../components/Psychologists/Psychologists";
 import { LoadMore } from "../../components/LoadMore/LoadMore";
 import { Filters } from "../../components/Filters/Filters";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import {
   endAt,
   getDatabase,
@@ -14,15 +14,25 @@ import {
 } from "firebase/database";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setCurrentState,
   setPsychologists,
   setSorted,
 } from "../../store/psychologists/psychologistsSlice";
-import { selectPage, selectSorted } from "../../store/psychologists/selectors";
+import {
+  selectPage,
+  selectPsychologists,
+  selectSorted,
+} from "../../store/psychologists/selectors";
 
-export const PsychologistsPage = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
+export const PsychologistsPage = ({
+  location,
+  selectedOption,
+  setSelectedOption,
+}) => {
+  // const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
+  const psychologists = useSelector(selectPsychologists);
   const sorted = useSelector(selectSorted);
   const limit = 3;
 
@@ -38,6 +48,27 @@ export const PsychologistsPage = () => {
   const prev = prevSelectedOption?.value;
   const now = selectedOption?.value;
 
+  const prevLocation = usePrevios(location);
+
+  useEffect(() => {
+    console.log(prevLocation);
+    console.log(location);
+    if (prevLocation !== location) {
+      // setSelectedOption(prevSelectedOption);
+      const data = { psychologists, sorted, page };
+      dispatch(setCurrentState(data));
+    }
+  }, [
+    prevLocation,
+    location,
+    dispatch,
+    psychologists,
+    sorted,
+    page,
+    prevSelectedOption,
+    setSelectedOption,
+  ]);
+
   // you can use both options: this one or the second one
   const getData = useCallback(() => {
     const database = getDatabase();
@@ -52,24 +83,28 @@ export const PsychologistsPage = () => {
       startAfter(startItem),
       endAt(endItem)
     );
-    onValue(currentQuery, (snapshot) => {
-      const newData = snapshot.val();
-      console.log(newData);
-      let data = [];
+    if (prevLocation !== location && page > 0) {
+      return;
+    } else {
+      onValue(currentQuery, (snapshot) => {
+        const newData = snapshot.val();
+        console.log(newData);
+        let data = [];
 
-      if (Array.isArray(newData)) {
-        data = newData.splice(newData.length - 3, 3);
-      } else {
-        data = Object.values(newData);
-      }
-      console.log(newData);
-      console.log(data);
-      if (data.length) {
-        dispatch(setPsychologists(data));
-      }
-      console.log("getData end");
-    });
-  }, [dispatch, page]);
+        if (Array.isArray(newData)) {
+          data = newData.splice(newData.length - 3, 3);
+        } else {
+          data = Object.values(newData);
+        }
+        console.log(newData);
+        console.log(data);
+        if (data.length) {
+          dispatch(setPsychologists(data));
+        }
+        console.log("getData end");
+      });
+    }
+  }, [dispatch, page, location, prevLocation]);
   // the second one
   // useEffect(() => {
   //   const getData = () => {
@@ -87,8 +122,15 @@ export const PsychologistsPage = () => {
     const database = getDatabase();
     const dbRef = ref(database);
     const sortedData = [];
-
-    if (sorted.length === 0 || prev !== now) {
+    console.log(prev + "==>" + now);
+    if (sorted.length !== 0 && prev === undefined) {
+      return;
+    } else if (
+      sorted.length === 0 ||
+      prev !== now
+      //  ||
+      // (sorted.length !== 0 && prev && prev !== now)
+    ) {
       const selectedValue = Object.values(selectedOption)[0].split(" ")[0];
       const selectedOrder = Object.values(selectedOption)[0].split(" ")[1];
       console.log(selectedOrder);
@@ -111,20 +153,35 @@ export const PsychologistsPage = () => {
   }, [dispatch, sorted, selectedOption, prev, now]);
 
   useEffect(() => {
-    selectedOption ? getSortedData() : getData();
-    console.log("selectedOption ", selectedOption);
-    console.log("first");
-  }, [getData, getSortedData, selectedOption]);
+    if (selectedOption) {
+      getSortedData();
+    } else if (!selectedOption && !sorted.length) {
+      getData();
+    }
+  }, [getData, getSortedData, selectedOption, sorted]);
 
   useEffect(() => {
-    if (sorted.length) {
-      console.log(sorted);
-      console.log(page);
-      const data = sorted.slice(page * limit, page * limit + limit);
-      console.log("second");
-      dispatch(setPsychologists(data));
+    console.log(prevLocation);
+    console.log(location);
+    console.log(page);
+    if (prevLocation !== location && page > 0) {
+      return;
+    } else {
+      if (sorted.length) {
+        const data = sorted.slice(page * limit, page * limit + limit);
+        dispatch(setPsychologists(data));
+      }
     }
-  }, [sorted, page, dispatch]);
+    // console.log(selectedOption, prevSelectedOption);
+  }, [
+    sorted,
+    page,
+    dispatch,
+    prevLocation,
+    location,
+    // selectedOption,
+    // prevSelectedOption,
+  ]);
 
   return (
     <>

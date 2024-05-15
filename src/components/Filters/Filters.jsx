@@ -17,10 +17,10 @@ export const Filters = ({ selectedOption, setSelectedOption }) => {
       <label className={s.label}>
         Filters
         <Select
-          className={s.select}
           defaultValue={selectedOption}
           onChange={setSelectedOption}
           options={options}
+          placeholder="A to Z"
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
@@ -28,6 +28,13 @@ export const Filters = ({ selectedOption, setSelectedOption }) => {
               // padding: "16px 162px 16px 18px",
               width: "226px",
               height: "48px",
+              cursor: "pointer",
+              backgroundColor: "var(--green)",
+              borderColor: "var(--light-green)",
+              ":hover": {
+                borderColor: "var(--green)",
+              },
+              caretColor: "transparent",
             }),
             // control: (baseStyles, state) => ({
             //   ...baseStyles,

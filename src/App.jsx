@@ -1,11 +1,11 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import { HomePage } from "./Pages/HomePage/HomePage";
 import { PsychologistsPage } from "./Pages/PsychologistsPage/PsychologistsPage";
 import { FavoritesPage } from "./Pages/FavoritesPage/FavoritesPage";
 import { Layout } from "./components/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { setUser } from "./store/auth/authSlice";
 import { selectUser } from "./store/auth/selectors";
@@ -13,7 +13,15 @@ import { toast } from "react-toastify";
 
 function App() {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const user = useSelector(selectUser);
+  const [location, setLocation] = useState(pathname);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  useEffect(() => {
+    setLocation(pathname);
+    console.log(location);
+  }, [pathname, location]);
 
   useEffect(() => {
     if (!user) {
@@ -46,7 +54,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="/psychologists" element={<PsychologistsPage />} />
+          <Route
+            path="/psychologists"
+            element={
+              <PsychologistsPage
+                location={location}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+              />
+            }
+          />
           <Route path="/favorites" element={<FavoritesPage />} />
           {/* <Route path="/login" element={<LoginForm />} /> */}
         </Route>

@@ -19,11 +19,25 @@ const psychologistsSlice = createSlice({
     setSorted(state, { payload }) {
       state.sorted = payload;
       state.page = 0;
-      // state.psychologists = [];
+    },
+    // setInitialState(state) {
+    //   state.psychologists = [];
+    //   state.sorted = [];
+    //   state.page = 0;
+    // },
+    setCurrentState(state, { payload }) {
+      state.psychologists = payload.psychologists;
+      state.sorted = payload.sorted;
+      state.page = payload.page;
     },
   },
 });
 
-export const { setPsychologists, handleLoadMore, setSorted } =
-  psychologistsSlice.actions;
+export const {
+  setPsychologists,
+  handleLoadMore,
+  setSorted,
+  // setInitialState,
+  setCurrentState,
+} = psychologistsSlice.actions;
 export const psychologistsReducer = psychologistsSlice.reducer;
