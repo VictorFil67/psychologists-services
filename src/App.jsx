@@ -16,7 +16,7 @@ function App() {
   const { pathname } = useLocation();
   const user = useSelector(selectUser);
   const [location, setLocation] = useState(pathname);
-  const [selectedOption, setSelectedOption] = useState(null);
+  // const [selectedOption, setSelectedOption] = useState(null);
 
   useEffect(() => {
     setLocation(pathname);
@@ -59,8 +59,8 @@ function App() {
             element={
               <PsychologistsPage
                 location={location}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
+                // selectedOption={selectedOption}
+                // setSelectedOption={setSelectedOption}
               />
             }
           />

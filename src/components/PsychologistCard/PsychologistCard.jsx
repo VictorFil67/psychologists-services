@@ -4,6 +4,9 @@ import SvgOnline from "../../images/psychologistCard/SvgOnline";
 import SvgStar from "../../images/psychologistCard/SvgStar";
 import s from "./PsychologistCard.module.css";
 import { Comments } from "../Comments/Comments";
+import { toggleHeart } from "../../store/psychologists/psychologistsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavorites } from "../../store/psychologists/selectors";
 
 export const PsychologistCard = ({
   about,
@@ -19,9 +22,9 @@ export const PsychologistCard = ({
   specialization,
 }) => {
   const [readMore, setReadMore] = useState(false);
-  // const showMore = () => {
-  //   setReadMore(true);
-  // };
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
+  const heart = favorites.includes(avatar_url);
 
   return (
     <>
@@ -47,8 +50,11 @@ export const PsychologistCard = ({
                 </p>
               </li>
               <li className={s.cardInfoItem}>
-                <button className={s.heart}>
-                  <SvgHeart />
+                <button
+                  className={s.heart}
+                  onClick={() => dispatch(toggleHeart(avatar_url))}
+                >
+                  <SvgHeart className={heart ? s.svgHeart : ""} />
                 </button>
               </li>
             </ul>

@@ -10,7 +10,7 @@
   display: flex;
   align-items: flex-start;
   width: 120px;
-  border: 2px solid rgba(84, 190, 150, 0.2);
+  border: 2px solid var(--light-green);
   border-radius: 30px;
   padding: 12px;
   min-width: 120px;
@@ -64,6 +64,12 @@
 .heart {
   background-color: transparent;
   border: none;
+}
+.svgHeart {
+  fill: var(--green);
+}
+.svgHeart path {
+  stroke: none;
 }
 .name {
   font-size: 24px;

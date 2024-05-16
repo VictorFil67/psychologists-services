@@ -1,7 +1,7 @@
 import { Psychologists } from "../../components/Psychologists/Psychologists";
 import { LoadMore } from "../../components/LoadMore/LoadMore";
 import { Filters } from "../../components/Filters/Filters";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   endAt,
   getDatabase,
@@ -26,10 +26,10 @@ import {
 
 export const PsychologistsPage = ({
   location,
-  selectedOption,
-  setSelectedOption,
+  // selectedOption,
+  // setSelectedOption,
 }) => {
-  // const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
   const psychologists = useSelector(selectPsychologists);
