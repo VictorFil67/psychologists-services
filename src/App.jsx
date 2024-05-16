@@ -64,7 +64,10 @@ function App() {
               />
             }
           />
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route
+            path="/favorites"
+            element={<FavoritesPage location={location} />}
+          />
           {/* <Route path="/login" element={<LoginForm />} /> */}
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

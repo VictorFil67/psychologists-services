@@ -7,6 +7,9 @@ const psychologistsSlice = createSlice({
     sorted: [],
     page: 0,
     favorites: [],
+    favoritesPsychologists: [],
+    favoritesShow: [],
+    favoritesPage: 0,
   },
   reducers: {
     handleLoadMore: (state) => {
@@ -35,6 +38,24 @@ const psychologistsSlice = createSlice({
           )
         : state.favorites.push(payload);
     },
+    setFavorites: (state, { payload }) => {
+      state.favoritesPsychologists = payload.filter((favoritesPsychologist) =>
+        state.favorites.includes(favoritesPsychologist.avatar_url)
+      );
+    },
+    setFavoritesShow(state, { payload }) {
+      state.favoritesPage !== 0
+        ? (state.favoritesShow = [...state.favoritesShow, ...payload])
+        : (state.favoritesShow = payload);
+    },
+    favoritesHandleLoadMore: (state) => {
+      state.favoritesPage += 1;
+    },
+    setFavoritesCurrentState(state, { payload }) {
+      state.favoritesPsychologists = payload.favoritesPsychologists;
+      state.favoritesShow = payload.favoritesShow;
+      state.favoritesPage = payload.favoritesPage;
+    },
     // setInitialState(state) {
     //   state.psychologists = [];
     //   state.sorted = [];
@@ -50,5 +71,9 @@ export const {
   // setInitialState,
   setCurrentState,
   toggleHeart,
+  setFavorites,
+  setFavoritesShow,
+  favoritesHandleLoadMore,
+  setFavoritesCurrentState,
 } = psychologistsSlice.actions;
 export const psychologistsReducer = psychologistsSlice.reducer;

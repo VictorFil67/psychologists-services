@@ -1,27 +1,51 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./LoadMore.module.css";
-import { handleLoadMore } from "../../store/psychologists/psychologistsSlice";
+import {
+  favoritesHandleLoadMore,
+  handleLoadMore,
+} from "../../store/psychologists/psychologistsSlice";
 import {
   selectPsychologists,
   selectSorted,
+  selectfavoritesPsychologists,
+  selectfavoritesShow,
 } from "../../store/psychologists/selectors";
 
-export const LoadMore = () => {
+export const LoadMore = ({ location }) => {
   const dispatch = useDispatch();
   const psychologists = useSelector(selectPsychologists);
   const sorted = useSelector(selectSorted);
+  const favoritesPsychologists = useSelector(selectfavoritesPsychologists);
+  const favoritesShow = useSelector(selectfavoritesShow);
 
   return (
-    <div className={s.loadMoreWrap}>
-      {(psychologists.length % 3 === 0 ||
-        psychologists.length !== sorted.length) && (
-        <button
-          className={s.loadMore}
-          onClick={() => dispatch(handleLoadMore())}
-        >
-          LoadMore
-        </button>
+    <>
+      {location === "/psychologists" ? (
+        <div className={s.loadMoreWrap}>
+          {(psychologists.length % 3 === 0 ||
+            psychologists.length !== sorted.length) && (
+            <button
+              className={s.loadMore}
+              onClick={() => dispatch(handleLoadMore())}
+            >
+              LoadMore
+            </button>
+          )}
+        </div>
+      ) : (
+        location === "/favorites" && (
+          <div className={s.loadMoreWrap}>
+            {favoritesShow.length < favoritesPsychologists.length && (
+              <button
+                className={s.loadMore}
+                onClick={() => dispatch(favoritesHandleLoadMore())}
+              >
+                LoadMore
+              </button>
+            )}
+          </div>
+        )
       )}
-    </div>
+    </>
   );
 };

@@ -2,12 +2,17 @@
 // import { firebaseApp } from "../../firebase";
 // import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { selectPsychologists } from "../../store/psychologists/selectors";
+import {
+  selectPsychologists,
+  selectfavoritesShow,
+} from "../../store/psychologists/selectors";
 import { PsychologistCard } from "../PsychologistCard/PsychologistCard";
 import s from "./Psychologists.module.css";
 
-export const Psychologists = () => {
+export const Psychologists = ({ location }) => {
   const psychologists = useSelector(selectPsychologists);
+  const favoritesShow = useSelector(selectfavoritesShow);
+  console.log(location);
   // const [dataDb, setDataDb] = useState([]);
 
   // const getData = useCallback(() => {
@@ -48,11 +53,21 @@ export const Psychologists = () => {
 
   return (
     <>
-      <ul className={s.psychologistsList}>
-        {psychologists.map((item, idx) => (
-          <PsychologistCard key={idx} data={item} {...item} />
-        ))}
-      </ul>
+      {location === "/favorites" ? (
+        <ul className={s.psychologistsList}>
+          {favoritesShow.map((item, idx) => (
+            <PsychologistCard key={idx} data={item} {...item} />
+          ))}
+        </ul>
+      ) : (
+        location === "/psychologists" && (
+          <ul className={s.psychologistsList}>
+            {psychologists.map((item, idx) => (
+              <PsychologistCard key={idx} data={item} {...item} />
+            ))}
+          </ul>
+        )
+      )}
     </>
   );
 };

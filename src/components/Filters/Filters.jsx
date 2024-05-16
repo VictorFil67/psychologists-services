@@ -26,9 +26,11 @@ export const Filters = ({ selectedOption, setSelectedOption }) => {
           }}
           placeholder="A to Z"
           styles={{
-            control: (b) => ({
+            control: (b, s) => ({
               ...b,
               borderRadius: "14px",
+
+              boxShadow: s.isFocused ? "var(--green)" : "var(--green)",
               // padding: "16px 162px 16px 18px",
               width: "226px",
               height: "48px",
@@ -47,7 +49,7 @@ export const Filters = ({ selectedOption, setSelectedOption }) => {
             dropdownIndicator: (b, s) => ({
               ...b,
               color: s.isFocused ? "var(--white)" : "var(--white)",
-              transform: "rotate(180deg)",
+              transform: s.isFocused ? "rotate(0deg)" : "rotate(180deg)",
               ":hover": {
                 color: "var(--white)",
                 transform: "rotate(0deg)",

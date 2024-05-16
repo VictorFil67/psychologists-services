@@ -1,7 +1,7 @@
 import { Psychologists } from "../../components/Psychologists/Psychologists";
 import { LoadMore } from "../../components/LoadMore/LoadMore";
 import { Filters } from "../../components/Filters/Filters";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   endAt,
   getDatabase,
@@ -23,6 +23,7 @@ import {
   selectPsychologists,
   selectSorted,
 } from "../../store/psychologists/selectors";
+import { usePrevios } from "../../hooks/usePrevios";
 
 export const PsychologistsPage = ({
   location,
@@ -37,13 +38,13 @@ export const PsychologistsPage = ({
   const limit = 3;
 
   //Hook for getting the previous state
-  const usePrevios = (value) => {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  };
+  // const usePrevios = (value) => {
+  //   const ref = useRef();
+  //   useEffect(() => {
+  //     ref.current = value;
+  //   });
+  //   return ref.current;
+  // };
   const prevSelectedOption = usePrevios(selectedOption);
   const prev = prevSelectedOption?.value;
   const now = selectedOption?.value;
@@ -189,8 +190,8 @@ export const PsychologistsPage = ({
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}
       />
-      <Psychologists />
-      <LoadMore />
+      <Psychologists location={location} />
+      <LoadMore location={location} />
     </>
   );
 };
