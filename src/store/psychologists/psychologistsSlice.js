@@ -42,6 +42,7 @@ const psychologistsSlice = createSlice({
       state.favoritesPsychologists = payload.filter((favoritesPsychologist) =>
         state.favorites.includes(favoritesPsychologist.avatar_url)
       );
+      state.favoritesPage = 0;
     },
     setFavoritesShow(state, { payload }) {
       state.favoritesPage !== 0
