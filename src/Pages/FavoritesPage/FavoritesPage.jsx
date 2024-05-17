@@ -3,6 +3,7 @@ import { Filters } from "../../components/Filters/Filters";
 import { LoadMore } from "../../components/LoadMore/LoadMore";
 import { Psychologists } from "../../components/Psychologists/Psychologists";
 import {
+  selectFavorites,
   selectfavoritesPage,
   selectfavoritesPsychologists,
   selectfavoritesShow,
@@ -29,6 +30,8 @@ export const FavoritesPage = ({ location }) => {
   const favoritesPage = useSelector(selectfavoritesPage);
   const favoritesPsychologists = useSelector(selectfavoritesPsychologists);
   const favoritesShow = useSelector(selectfavoritesShow);
+  const favorites = useSelector(selectFavorites);
+  const [countFavorites, setCountFavorites] = useState(favorites.length);
   const limit = 3;
 
   const prevSelectedOption = usePrevios(selectedOption);
@@ -36,6 +39,11 @@ export const FavoritesPage = ({ location }) => {
   const now = selectedOption?.value;
 
   const prevLocation = usePrevios(location);
+  const prevCountFavorites = usePrevios(countFavorites);
+
+  const setCount = () => {
+    setCountFavorites(favorites.length);
+  };
 
   useEffect(() => {
     // console.log(prevLocation);
@@ -69,7 +77,7 @@ export const FavoritesPage = ({ location }) => {
       // startAfter(startItem),
       // endAt(endItem)
     );
-    if (favoritesPage === 0) {
+    if (favoritesPage === 0 || prevCountFavorites !== countFavorites) {
       onValue(currentQuery, (snapshot) => {
         const data = snapshot.val();
         // const newData = snapshot.val();
@@ -86,10 +94,11 @@ export const FavoritesPage = ({ location }) => {
         if (data.length) {
           dispatch(setFavorites(data));
         }
+        console.log(prevCountFavorites, countFavorites);
         console.log("getData end");
       });
     }
-  }, [dispatch, favoritesPage]);
+  }, [dispatch, favoritesPage, prevCountFavorites, countFavorites]);
 
   const getSortedData = useCallback(() => {
     const database = getDatabase();
@@ -154,7 +163,11 @@ export const FavoritesPage = ({ location }) => {
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}
       />
-      <Psychologists location={location} />
+      <Psychologists
+        location={location}
+        setCountFavorites={setCount}
+        // countFavorites={countFavorites}
+      />
       <LoadMore location={location} />
     </>
   );

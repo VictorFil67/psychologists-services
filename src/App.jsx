@@ -10,13 +10,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { setUser } from "./store/auth/authSlice";
 import { selectUser } from "./store/auth/selectors";
 import { toast } from "react-toastify";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const user = useSelector(selectUser);
   const [location, setLocation] = useState(pathname);
-  // const [selectedOption, setSelectedOption] = useState(null);
 
   useEffect(() => {
     setLocation(pathname);
@@ -56,17 +56,15 @@ function App() {
           <Route index element={<HomePage />} />
           <Route
             path="/psychologists"
-            element={
-              <PsychologistsPage
-                location={location}
-                // selectedOption={selectedOption}
-                // setSelectedOption={setSelectedOption}
-              />
-            }
+            element={<PsychologistsPage location={location} />}
           />
           <Route
             path="/favorites"
-            element={<FavoritesPage location={location} />}
+            element={
+              <PrivateRoute>
+                <FavoritesPage location={location} />
+              </PrivateRoute>
+            }
           />
           {/* <Route path="/login" element={<LoginForm />} /> */}
         </Route>

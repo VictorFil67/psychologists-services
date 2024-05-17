@@ -9,7 +9,11 @@ import {
 import { PsychologistCard } from "../PsychologistCard/PsychologistCard";
 import s from "./Psychologists.module.css";
 
-export const Psychologists = ({ location }) => {
+export const Psychologists = ({
+  location,
+  setCountFavorites,
+  // countFavorites,
+}) => {
   const psychologists = useSelector(selectPsychologists);
   const favoritesShow = useSelector(selectfavoritesShow);
   console.log(location);
@@ -56,7 +60,13 @@ export const Psychologists = ({ location }) => {
       {location === "/favorites" ? (
         <ul className={s.psychologistsList}>
           {favoritesShow.map((item, idx) => (
-            <PsychologistCard key={idx} data={item} {...item} />
+            <PsychologistCard
+              key={idx}
+              data={item}
+              {...item}
+              setCountFavorites={setCountFavorites}
+              // countFavorites={countFavorites}
+            />
           ))}
         </ul>
       ) : (

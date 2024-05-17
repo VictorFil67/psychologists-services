@@ -76,9 +76,11 @@ export const Layout = () => {
                 <NavLink to={"/psychologists"} className={s.pageLink}>
                   Psychologists
                 </NavLink>
-                <NavLink to={"/favorites"} className={s.pageLink}>
-                  Favorites
-                </NavLink>
+                {user && (
+                  <NavLink to={"/favorites"} className={s.pageLink}>
+                    Favorites
+                  </NavLink>
+                )}
               </nav>
               {/* </div> */}
             </div>

@@ -7,6 +7,8 @@ import { Comments } from "../Comments/Comments";
 import { toggleHeart } from "../../store/psychologists/psychologistsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFavorites } from "../../store/psychologists/selectors";
+import { selectUser } from "../../store/auth/selectors";
+import { NoAccess } from "../NoAccess/NoAccess";
 
 export const PsychologistCard = ({
   about,
@@ -17,14 +19,24 @@ export const PsychologistCard = ({
   name,
   price_per_hour,
   rating,
-  // id,
   reviews,
   specialization,
+  setCountFavorites,
+  // countFavorites,
 }) => {
   const [readMore, setReadMore] = useState(false);
+  const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
   const heart = favorites.includes(avatar_url);
+  const user = useSelector(selectUser);
+
+  function open() {
+    setModal(true);
+  }
+  function close() {
+    setModal(false);
+  }
 
   return (
     <>
@@ -52,7 +64,13 @@ export const PsychologistCard = ({
               <li className={s.cardInfoItem}>
                 <button
                   className={s.heart}
-                  onClick={() => dispatch(toggleHeart(avatar_url))}
+                  onClick={
+                    user
+                      ? () =>
+                          dispatch(toggleHeart(avatar_url)) &&
+                          setCountFavorites()
+                      : open
+                  }
                 >
                   <SvgHeart className={heart ? s.svgHeart : ""} />
                 </button>
@@ -102,6 +120,7 @@ export const PsychologistCard = ({
           )}
         </div>
       </li>
+      {modal && <NoAccess close={close} />}
     </>
   );
 };
