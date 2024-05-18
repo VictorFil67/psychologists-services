@@ -11,12 +11,19 @@ import { setUser } from "./store/auth/authSlice";
 import { selectUser } from "./store/auth/selectors";
 import { toast } from "react-toastify";
 import PrivateRoute from "./routes/PrivateRoute";
+import { selectFavorites } from "./store/psychologists/selectors";
 
 function App() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const user = useSelector(selectUser);
   const [location, setLocation] = useState(pathname);
+  const favorites = useSelector(selectFavorites);
+  const [countFavorites, setCountFavorites] = useState(favorites.length);
+
+  const setCount = () => {
+    setCountFavorites(favorites.length);
+  };
 
   useEffect(() => {
     setLocation(pathname);
@@ -56,13 +63,23 @@ function App() {
           <Route index element={<HomePage />} />
           <Route
             path="/psychologists"
-            element={<PsychologistsPage location={location} />}
+            element={
+              <PsychologistsPage
+                location={location}
+                countFavorites={countFavorites}
+                setCount={setCount}
+              />
+            }
           />
           <Route
             path="/favorites"
             element={
               <PrivateRoute>
-                <FavoritesPage location={location} />
+                <FavoritesPage
+                  location={location}
+                  countFavorites={countFavorites}
+                  setCount={setCount}
+                />
               </PrivateRoute>
             }
           />

@@ -37,6 +37,10 @@ export const PsychologistCard = ({
   function close() {
     setModal(false);
   }
+  function handleClick() {
+    setCountFavorites();
+    dispatch(toggleHeart(avatar_url));
+  }
 
   return (
     <>
@@ -62,16 +66,7 @@ export const PsychologistCard = ({
                 </p>
               </li>
               <li className={s.cardInfoItem}>
-                <button
-                  className={s.heart}
-                  onClick={
-                    user
-                      ? () =>
-                          dispatch(toggleHeart(avatar_url)) &&
-                          setCountFavorites()
-                      : open
-                  }
-                >
+                <button className={s.heart} onClick={user ? handleClick : open}>
                   <SvgHeart className={heart ? s.svgHeart : ""} />
                 </button>
               </li>

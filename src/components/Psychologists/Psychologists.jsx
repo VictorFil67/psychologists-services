@@ -3,6 +3,7 @@
 // import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
+  selectFavorites,
   selectPsychologists,
   selectfavoritesShow,
 } from "../../store/psychologists/selectors";
@@ -16,6 +17,8 @@ export const Psychologists = ({
 }) => {
   const psychologists = useSelector(selectPsychologists);
   const favoritesShow = useSelector(selectfavoritesShow);
+  const favorites = useSelector(selectFavorites);
+
   console.log(location);
   // const [dataDb, setDataDb] = useState([]);
 
@@ -57,27 +60,32 @@ export const Psychologists = ({
 
   return (
     <>
-      {location === "/favorites" ? (
-        <ul className={s.psychologistsList}>
-          {favoritesShow.map((item, idx) => (
-            <PsychologistCard
-              key={idx}
-              data={item}
-              {...item}
-              setCountFavorites={setCountFavorites}
-              // countFavorites={countFavorites}
-            />
-          ))}
-        </ul>
-      ) : (
-        location === "/psychologists" && (
-          <ul className={s.psychologistsList}>
-            {psychologists.map((item, idx) => (
-              <PsychologistCard key={idx} data={item} {...item} />
-            ))}
-          </ul>
-        )
-      )}
+      {location === "/favorites"
+        ? favorites && (
+            <ul className={s.psychologistsList}>
+              {favoritesShow.map((item, idx) => (
+                <PsychologistCard
+                  key={idx}
+                  data={item}
+                  {...item}
+                  setCountFavorites={setCountFavorites}
+                  // countFavorites={countFavorites}
+                />
+              ))}
+            </ul>
+          )
+        : location === "/psychologists" && (
+            <ul className={s.psychologistsList}>
+              {psychologists.map((item, idx) => (
+                <PsychologistCard
+                  key={idx}
+                  data={item}
+                  {...item}
+                  setCountFavorites={setCountFavorites}
+                />
+              ))}
+            </ul>
+          )}
     </>
   );
 };

@@ -25,11 +25,7 @@ import {
 } from "../../store/psychologists/selectors";
 import { usePrevios } from "../../hooks/usePrevios";
 
-export const PsychologistsPage = ({
-  location,
-  // selectedOption,
-  // setSelectedOption,
-}) => {
+export const PsychologistsPage = ({ location, setCount }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
@@ -190,7 +186,7 @@ export const PsychologistsPage = ({
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}
       />
-      <Psychologists location={location} />
+      <Psychologists location={location} setCountFavorites={setCount} />
       <LoadMore location={location} />
     </>
   );
