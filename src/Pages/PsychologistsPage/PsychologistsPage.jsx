@@ -48,8 +48,8 @@ export const PsychologistsPage = ({ location, setCount }) => {
   const prevLocation = usePrevios(location);
 
   useEffect(() => {
-    console.log(prevLocation);
-    console.log(location);
+    // console.log(prevLocation);
+    // console.log(location);
     if (prevLocation !== location) {
       // setSelectedOption(prevSelectedOption);
       const data = { psychologists, sorted, page };
@@ -85,7 +85,7 @@ export const PsychologistsPage = ({ location, setCount }) => {
     } else {
       onValue(currentQuery, (snapshot) => {
         const newData = snapshot.val();
-        console.log(newData);
+        // console.log(newData);
         let data = [];
 
         if (Array.isArray(newData)) {
@@ -93,12 +93,12 @@ export const PsychologistsPage = ({ location, setCount }) => {
         } else {
           data = Object.values(newData);
         }
-        console.log(newData);
-        console.log(data);
+        // console.log(newData);
+        // console.log(data);
         if (data.length) {
           dispatch(setPsychologists(data));
         }
-        console.log("getData end");
+        // console.log("getData end");
       });
     }
   }, [dispatch, page, location, prevLocation]);
@@ -119,7 +119,7 @@ export const PsychologistsPage = ({ location, setCount }) => {
     const database = getDatabase();
     const dbRef = ref(database);
     const sortedData = [];
-    console.log(prev + "==>" + now);
+    // console.log(prev + "==>" + now);
     if (sorted.length !== 0 && prev === undefined) {
       return;
     } else if (
@@ -130,20 +130,20 @@ export const PsychologistsPage = ({ location, setCount }) => {
     ) {
       const selectedValue = Object.values(selectedOption)[0].split(" ")[0];
       const selectedOrder = Object.values(selectedOption)[0].split(" ")[1];
-      console.log(selectedOrder);
+      // console.log(selectedOrder);
       const currentQuery = query(dbRef, orderByChild(selectedValue));
       onValue(currentQuery, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          const childKey = childSnapshot.key;
+          // const childKey = childSnapshot.key;
           const childData = childSnapshot.val();
-          console.log(`${childKey} : ${childData[selectedValue]}`);
+          // console.log(`${childKey} : ${childData[selectedValue]}`);
           sortedData.push(childData);
         });
 
         if (selectedOrder) {
           sortedData.reverse();
         }
-        console.log(sortedData);
+        // console.log(sortedData);
         dispatch(setSorted(sortedData));
       });
     }
@@ -158,9 +158,9 @@ export const PsychologistsPage = ({ location, setCount }) => {
   }, [getData, getSortedData, selectedOption, sorted]);
 
   useEffect(() => {
-    console.log(prevLocation);
-    console.log(location);
-    console.log(page);
+    // console.log(prevLocation);
+    // console.log(location);
+    // console.log(page);
     if (prevLocation !== location && page > 0) {
       return;
     } else {

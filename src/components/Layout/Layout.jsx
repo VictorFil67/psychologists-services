@@ -21,13 +21,12 @@ export const Layout = () => {
   const [modalRegistration, setModalRegistration] = useState(false);
   const [modalLogIn, setModalLogIn] = useState(false);
   const [mobileMenu, setMobileMenu] = useState();
-  console.log(mobileMenu);
+  // console.log(mobileMenu);
 
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(user);
 
   function open(setModal) {
     setModal(true);

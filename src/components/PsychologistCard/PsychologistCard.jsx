@@ -110,7 +110,7 @@ export const PsychologistCard = ({
             </button>
           ) : (
             // <div className={s.readMore}>
-            <Comments reviews={reviews} />
+            <Comments reviews={reviews} avatar_url={avatar_url} name={name} />
             // </div>
           )}
         </div>

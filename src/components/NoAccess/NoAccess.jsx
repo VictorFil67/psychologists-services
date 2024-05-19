@@ -19,7 +19,7 @@ export const NoAccess = ({ close }) => {
   return (
     <div className={s.overlay} onClick={handleClick}>
       <div className={s.modal}>
-        <h1>No access! For authorized users only</h1>
+        <h1>No access! For authorized users only!</h1>
       </div>
     </div>
   );

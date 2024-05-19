@@ -1,0 +1,152 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  /* bottom: 0; */
+  left: 0;
+  /* right: 0; */
+  width: 100vw;
+  height: 100vh;
+  background: rgba(25, 26, 21, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 30px;
+  padding: 64px;
+  position: relative;
+  z-index: 9999;
+}
+.CloseBtn {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.title {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+
+  &[data-appointment=""] {
+    max-width: 472px;
+  }
+}
+.text {
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.5);
+  margin-bottom: 40px;
+  max-width: 438px;
+  &[data-appointment=""] {
+    max-width: 472px;
+  }
+}
+.psychologistwrap {
+  display: flex;
+  min-width: 174px;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.psychologistImg {
+  border-radius: 15px;
+  background-color: #e0e0e0;
+  /* width: 44px;
+height: 44px; */
+}
+.psychologistInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.yourPsychologist {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8a8a89;
+}
+.name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--black);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.input {
+  padding: 16px 18px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  width: 472px;
+  height: 52px;
+
+  outline: none;
+  &::placeholder {
+    color: var(--black);
+  }
+
+  &:focus-within {
+    border: 1px solid var(--green);
+  }
+}
+.box {
+  display: flex;
+  gap: 8px;
+
+  input {
+    max-width: 232px;
+  }
+}
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 232px;
+}
+.textarea {
+  padding: 16px 18px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  width: 472px;
+  height: 116px;
+
+  outline: none;
+  &::placeholder {
+    color: var(--black);
+  }
+
+  &:focus-within {
+    border: 1px solid var(--green);
+  }
+}
+.button {
+  margin-top: 22px;
+  border-radius: 30px;
+  padding: 16px 196px;
+  border: none;
+  background-color: var(--green);
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.3s;
+  max-width: 438px;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: var(--hover-green);
+  }
+  &[data-appointment=""] {
+    max-width: 472px;
+  }
+}

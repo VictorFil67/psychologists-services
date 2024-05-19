@@ -80,16 +80,6 @@ export const FavoritesPage = ({ location, setCount, countFavorites }) => {
     if (favoritesPage === 0 || prevCountFavorites !== countFavorites) {
       onValue(currentQuery, (snapshot) => {
         const data = snapshot.val();
-        // const newData = snapshot.val();
-        // console.log(newData);
-        // let data = [];
-
-        // if (Array.isArray(newData)) {
-        //   data = newData.splice(newData.length - 3, 3);
-        // } else {
-        //   data = Object.values(newData);
-        // }
-        // console.log(newData);
         console.log(data);
         if (data.length) {
           dispatch(setFavorites(data));

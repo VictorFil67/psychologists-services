@@ -1,10 +1,24 @@
 import s from "./Comments.module.css";
 // import unknown from "../../images/psychologistCard/unknown.png";
 import SvgStar from "../../images/psychologistCard/SvgStar";
+import { Appointment } from "../Appointment/Appointment";
+import { useState } from "react";
 
-export const Comments = ({ reviews }) => {
+export const Comments = ({ reviews, name, avatar_url }) => {
+  const [modal, setModal] = useState(false);
+
+  function open() {
+    setModal(true);
+  }
+  function close() {
+    setModal(false);
+  }
+
   return (
     <>
+      {modal && (
+        <Appointment close={close} name={name} avatar_url={avatar_url} />
+      )}
       <ul className={s.commentList}>
         {reviews.map(({ comment, rating, reviewer }, idx) => (
           <li key={idx}>
@@ -25,7 +39,9 @@ export const Comments = ({ reviews }) => {
           </li>
         ))}
       </ul>
-      <button className={s.appointment}>Make an appointment</button>
+      <button className={s.appointment} onClick={open}>
+        Make an appointment
+      </button>
     </>
   );
 };

@@ -21,7 +21,8 @@ const schema = yup.object({
     .string()
     .email("Please write a valid email")
     .matches(
-      /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
+      /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+      "Please write a valid email"
     )
     .required("The email is required"),
   password: yup

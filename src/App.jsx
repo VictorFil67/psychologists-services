@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     setLocation(pathname);
-    console.log(location);
+    // console.log(location);
   }, [pathname, location]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function App() {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          console.log("current");
+          // console.log("current");
           dispatch(
             setUser({
               user: {

@@ -19,44 +19,7 @@ export const Psychologists = ({
   const favoritesShow = useSelector(selectfavoritesShow);
   const favorites = useSelector(selectFavorites);
 
-  console.log(location);
-  // const [dataDb, setDataDb] = useState([]);
-
-  // const getData = useCallback(() => {
-  //   const database = getDatabase();
-  //   const dbRef = ref(database);
-  //   onValue(dbRef, (snapshot) => {
-  //     const data = snapshot.val();
-  //     setDataDb(data);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   getData();
-  // }, [getData]);
-  // console.log(dataDb);
-
-  //   // const database = getDatabase(firebaseApp);
-  //   // const dbRef = ref(database);
-  //   // const dispatch = useDispatch();
-  //   // const psychologists = useSelector(selectPsychologists);
-  //   // console.log(psychologists);
-  //   const [data, setData] = useState([]);
-
-  //   const getData = useCallback(() => {
-  //     // console.log(psychologists.length);
-  //     const database = getDatabase(firebaseApp);
-  //     const dbRef = ref(database);
-  //     onValue(dbRef, (snapshot) => {
-  //       const data = snapshot.val();
-  //       setData(data);
-  //     });
-  //   }, []);
-
-  //   useEffect(() => {
-  //     getData();
-  //   }, [getData]);
-  //   console.log(data);
+  // console.log(location);
 
   return (
     <>

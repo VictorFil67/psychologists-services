@@ -60,4 +60,7 @@
   &:hover {
     background-color: var(--hover-green);
   }
+  &:focus-visible {
+    outline: none;
+  }
 }

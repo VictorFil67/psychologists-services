@@ -64,6 +64,9 @@
 .heart {
   background-color: transparent;
   border: none;
+  &:focus-visible {
+    outline: none;
+  }
 }
 .svgHeart {
   fill: var(--green);
