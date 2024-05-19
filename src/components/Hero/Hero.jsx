@@ -4,8 +4,10 @@ import SvgQuestion from "../../images/SvgQuestion";
 import SvgUsers from "../../images/SvgUsers";
 import HeroImg from "../../images/HeroImg.jpg";
 import s from "./Hero.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className={s.heroSection}>
       <div className={s.leftSide}>
@@ -17,7 +19,10 @@ export const Hero = () => {
           We help you to reveal your potential, overcome challenges and find a
           guide in your own life with the help of our experienced psychologists.
         </p>
-        <button className={s.getStarted}>
+        <button
+          className={s.getStarted}
+          onClick={() => navigate("/psychologists")}
+        >
           Get started
           <SvgGetStarted />
         </button>

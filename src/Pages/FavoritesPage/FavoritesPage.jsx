@@ -105,7 +105,10 @@ export const FavoritesPage = ({ location, setCount, countFavorites }) => {
     const dbRef = ref(database);
     const sortedData = [];
     console.log(prev + "==>" + now);
-    if (prev !== now && prevLocation === location) {
+    if (
+      (prev !== now && prevLocation === location) ||
+      prevCountFavorites !== countFavorites
+    ) {
       const selectedValue = Object.values(selectedOption)[0].split(" ")[0];
       const selectedOrder = Object.values(selectedOption)[0].split(" ")[1];
       console.log(selectedOrder);
@@ -125,7 +128,16 @@ export const FavoritesPage = ({ location, setCount, countFavorites }) => {
         dispatch(setFavorites(sortedData));
       });
     }
-  }, [dispatch, selectedOption, prev, now, prevLocation, location]);
+  }, [
+    dispatch,
+    selectedOption,
+    prev,
+    now,
+    prevLocation,
+    location,
+    prevCountFavorites,
+    countFavorites,
+  ]);
 
   useEffect(() => {
     selectedOption ? getSortedData() : getData();

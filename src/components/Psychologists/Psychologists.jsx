@@ -60,32 +60,38 @@ export const Psychologists = ({
 
   return (
     <>
-      {location === "/favorites"
-        ? favorites && (
-            <ul className={s.psychologistsList}>
-              {favoritesShow.map((item, idx) => (
-                <PsychologistCard
-                  key={idx}
-                  data={item}
-                  {...item}
-                  setCountFavorites={setCountFavorites}
-                  // countFavorites={countFavorites}
-                />
-              ))}
-            </ul>
-          )
-        : location === "/psychologists" && (
-            <ul className={s.psychologistsList}>
-              {psychologists.map((item, idx) => (
-                <PsychologistCard
-                  key={idx}
-                  data={item}
-                  {...item}
-                  setCountFavorites={setCountFavorites}
-                />
-              ))}
-            </ul>
-          )}
+      {location === "/favorites" ? (
+        favorites.length ? (
+          <ul className={s.psychologistsList}>
+            {favoritesShow.map((item, idx) => (
+              <PsychologistCard
+                key={idx}
+                data={item}
+                {...item}
+                setCountFavorites={setCountFavorites}
+                // countFavorites={countFavorites}
+              />
+            ))}
+          </ul>
+        ) : (
+          <div className={s.messageWrap}>
+            <h1 className={s.message}>
+              You don`t have any favorite psychologists
+            </h1>
+          </div>
+        )
+      ) : (
+        <ul className={s.psychologistsList}>
+          {psychologists.map((item, idx) => (
+            <PsychologistCard
+              key={idx}
+              data={item}
+              {...item}
+              setCountFavorites={setCountFavorites}
+            />
+          ))}
+        </ul>
+      )}
     </>
   );
 };

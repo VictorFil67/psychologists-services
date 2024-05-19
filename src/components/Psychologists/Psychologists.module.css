@@ -4,3 +4,10 @@
   gap: 32px;
   margin: 32px 0 64px 0;
 }
+.messageWrap {
+  display: flex;
+  padding: 100px;
+}
+.message {
+  margin: 0 auto;
+}
