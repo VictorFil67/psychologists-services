@@ -3,6 +3,10 @@ import SvgClose from "../../images/modalIcons/SvgClose";
 import s from "./Appointment.module.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+// import { BasicTimePicker } from "../MeetingTime/MeetingTime";
+import { useState } from "react";
+// import { Time } from "../Time/Time";
+// import BasicTimePicker from "../MeetingTime/MeetingTime";
 
 const schema = yup.object({
   name: yup
@@ -22,13 +26,19 @@ const schema = yup.object({
     .string()
     .min(10, "The phone must contain a minimum of 10 characters")
     .required("The phone is required"),
+  time: yup
+    .string()
+    // .min("00:01", "The time must be chosen")
+    .required("The time is required"),
   comment: yup
     .string()
-    .max(10, "The comment must contain a maximum of 10 characters"),
-  // .required("The phone is required"),
+    // .max(10, "The comment must contain a maximum of 10 characters")
+    .required("The comment is required"),
 });
 
 export const Appointment = ({ close, name, avatar_url }) => {
+  const [value, setValue] = useState("00:00");
+
   const {
     register,
     handleSubmit,
@@ -37,8 +47,9 @@ export const Appointment = ({ close, name, avatar_url }) => {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-  function onSubmit() {
-    alert(`You made the appointment with ${name}`);
+  function onSubmit(data) {
+    console.log(data);
+    alert(`You made the appointment with ${name} at ${data.time}`);
   }
 
   function handleClick(e) {
@@ -52,6 +63,9 @@ export const Appointment = ({ close, name, avatar_url }) => {
       close();
       document.removeEventListener("keydown", onWindowEscape);
     }
+  }
+  function handleChange(e) {
+    setValue(e.target.value);
   }
 
   return (
@@ -106,10 +120,13 @@ export const Appointment = ({ close, name, avatar_url }) => {
               <input
                 className={s.input}
                 {...register("time")}
-                type="text"
-                placeholder="time"
-                //   name="time"
+                type="time"
+                placeholder=""
+                value={value}
+                onChange={handleChange}
               />
+              {/* <Time /> */}
+              {/* <BasicTimePicker /> */}
               <span className={s.error}>{errors.time?.message}</span>
             </div>
           </div>

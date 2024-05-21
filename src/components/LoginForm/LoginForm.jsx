@@ -23,6 +23,7 @@ const schema = yup.object({
 });
 
 export const LoginForm = ({ close }) => {
+  // const [eye, setEye] = useState(false);
   const dispatch = useDispatch();
 
   const {
@@ -105,7 +106,7 @@ export const LoginForm = ({ close }) => {
             <input
               className={s.input}
               placeholder="Password"
-              type="password"
+              // type={eye ? "text" : "password"}
               {...register("password")}
             />
             <span className={s.error}>{errors.password?.message}</span>

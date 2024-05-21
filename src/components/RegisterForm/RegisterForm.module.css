@@ -10,18 +10,18 @@
   /* padding: 40px 20px; */
   background: rgba(25, 26, 21, 0.6);
   z-index: 1200;
-  overflow: auto;
+  /* overflow: hidden; */
 }
 .modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 30px;
   padding: 64px;
   position: relative;
-  /* display: flex;
-  flex-direction: column;
-  gap: 20px; */
-  /* min-width: 280px;
-  max-width: 550px;
-  align-items: flex-start;
-  margin: 0 auto; */
+  z-index: 9999;
 }
 
 /* @media only screen and (min-width: 1440px) {
@@ -38,15 +38,28 @@
   padding: 0;
 }
 .formTitle {
-  font: 700 28px / 1.21429 "Merriweather", sans-serif;
-  color: #172234;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  /* margin-bottom: 20px; */
+}
+.formText {
+  line-height: 125%;
+  color: rgba(25, 26, 21, 0.5);
+  /* margin-bottom: 40px; */
+  max-width: 438px;
 }
 .form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 30px;
-  border: 1px solid red;
+  gap: 40px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .inputBlock {
   display: flex;
@@ -57,31 +70,35 @@
 .inputBlockWrap {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   min-width: 100%;
 }
 .inputWrap {
   display: flex;
-  gap: 3px;
+  /* gap: 3px; */
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
 }
-.label {
+/* .label {
   font: 700 14px / 1.42857 "Merriweather", sans-serif;
   color: #000;
-}
+} */
 .input {
-  min-width: 100%;
-  padding: 14px 20px;
-  border: 2px solid #e0e0e0;
-  border-radius: 5px;
-  background: #e0e0e0;
+  position: relative;
+  padding: 16px 18px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  width: 438px;
+  height: 52px;
+
   outline: none;
   &::placeholder {
-    font: 400 14px / 1.57143 "Lato", sans-serif;
-    color: #172234;
-    opacity: 0.5;
+    color: var(--black);
+  }
+
+  &:focus-within {
+    border: 1px solid var(--green);
   }
 }
 .error {
@@ -92,18 +109,18 @@
   font-family: "Roboto", sans-serif;
 }
 .submit {
-  border-radius: 5px;
-  background: #b29f7e;
-  font: 700 16px / 1.375 "Merriweather", sans-serif;
-  text-align: center;
-  color: #fff;
+  border-radius: 30px;
+  padding: 16px 196px;
+  border: none;
+  background-color: var(--green);
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.3s;
+  max-width: 438px;
+  white-space: nowrap;
+
   &:hover {
-    border: none;
-    outline: none;
-  }
-  &:focus {
-    border: none;
-    outline: none;
+    background-color: var(--hover-green);
   }
 }
 .signUp {

@@ -99,40 +99,44 @@ export const RegisterForm = ({ close }) => {
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={s.info}>
             <h1 className={s.formTitle}>Registration</h1>
-            <p>
+            <p className={s.formText}>
               Thank you for your interest in our platform! In order to register,
               we need some information. Please provide us with the following
               information.
             </p>
           </div>
           <div className={s.inputBlockWrap}>
-            <input
-              className={s.input}
-              placeholder="Name"
-              type="text"
-              {...register("name")}
-            />
-            <span className={s.error}>{errors.name?.message}</span>
-
-            <input
-              className={s.input}
-              placeholder="Email"
-              type="text"
-              {...register("email")}
-            />
-            <span className={s.error}>{errors.email?.message}</span>
-
-            <input
-              className={s.input}
-              placeholder="Password"
-              type="password"
-              {...register("password")}
-            />
-            <span className={s.error}>{errors.password?.message}</span>
+            <div className={s.inputWrap}>
+              <input
+                className={s.input}
+                placeholder="Name"
+                type="text"
+                {...register("name")}
+              />
+              <span className={s.error}>{errors.name?.message}</span>
+            </div>
+            <div className={s.inputWrap}>
+              <input
+                className={s.input}
+                placeholder="Email"
+                type="text"
+                {...register("email")}
+              />
+              <span className={s.error}>{errors.email?.message}</span>
+            </div>
+            <div className={s.inputWrap}>
+              <input
+                className={s.input}
+                placeholder="Password"
+                type="password"
+                {...register("password")}
+              />
+              <span className={s.error}>{errors.password?.message}</span>
+            </div>
           </div>
 
           <button name="submit" className={s.submit} type="submit">
-            Sign Un
+            Sign Up
           </button>
         </form>
       </div>

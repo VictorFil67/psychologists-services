@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Link,
   NavLink,
@@ -50,6 +50,13 @@ export const Layout = () => {
       });
     // dispatch(logout());
   }
+  useEffect(() => {
+    if (modalRegistration || modalLogIn) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [modalRegistration, modalLogIn]);
 
   return (
     <>
