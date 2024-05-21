@@ -25,15 +25,13 @@
 .headerWrap {
   height: 96px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.navWrap {
-  position: relative;
-  display: flex;
   gap: 130px;
   align-items: center;
 }
+.headerWrap.largeGap {
+  gap: 226px;
+}
+
 .logo {
   /* margin-right: 130px; */
   font-weight: 700;
@@ -43,6 +41,13 @@
 }
 .logoSpan {
   color: var(--green);
+}
+.navWrap {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
 }
 /* .mobileOverlay {
   position: fixed;
@@ -199,7 +204,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-right: 28px;
+  margin-right: 20px;
 }
 .username {
   line-height: 125%;

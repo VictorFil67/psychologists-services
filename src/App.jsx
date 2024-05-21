@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { setUser } from "./store/auth/authSlice";
 import { selectUser } from "./store/auth/selectors";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import PrivateRoute from "./routes/PrivateRoute";
 import { selectFavorites } from "./store/psychologists/selectors";
 
@@ -27,7 +27,6 @@ function App() {
 
   useEffect(() => {
     setLocation(pathname);
-    // console.log(location);
   }, [pathname, location]);
 
   useEffect(() => {
@@ -35,7 +34,6 @@ function App() {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          // console.log("current");
           dispatch(
             setUser({
               user: {
@@ -48,9 +46,7 @@ function App() {
           );
           // ...
         } else {
-          toast.info("User is signed out");
-          // User is signed out
-          // ...
+          // toast.info("User is signed out");
         }
       });
     }
@@ -83,7 +79,6 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* <Route path="/login" element={<LoginForm />} /> */}
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
