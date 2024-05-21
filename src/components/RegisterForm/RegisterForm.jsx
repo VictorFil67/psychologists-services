@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import s from "./RegisterForm.module.css";
 import SvgClose from "../../images/modalIcons/SvgClose";
+import EyeOpenSvg from "../../images/modalIcons/EyeOpenSvg";
+import EyeCloseSvg from "../../images/modalIcons/EyeCloseSvg";
 import { useDispatch } from "react-redux";
 import {
   createUserWithEmailAndPassword,
@@ -11,6 +13,7 @@ import {
 } from "firebase/auth";
 import { setUser } from "../../store/auth/authSlice";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const schema = yup.object({
   name: yup
@@ -32,6 +35,7 @@ const schema = yup.object({
 });
 
 export const RegisterForm = ({ close }) => {
+  const [eye, setEye] = useState(false);
   const dispatch = useDispatch();
 
   const {
@@ -66,10 +70,7 @@ export const RegisterForm = ({ close }) => {
         toast.success(`Welcome`);
       })
       .catch((error) => {
-        // const errorCode = error.code;
         const errorMessage = error.message;
-        // console.log(errorCode);
-        // toast.error(errorCode);
         toast.error(errorMessage);
         // ..
       });
@@ -106,7 +107,7 @@ export const RegisterForm = ({ close }) => {
             </p>
           </div>
           <div className={s.inputBlockWrap}>
-            <div className={s.inputWrap}>
+            <label className={s.inputWrap}>
               <input
                 className={s.input}
                 placeholder="Name"
@@ -114,8 +115,8 @@ export const RegisterForm = ({ close }) => {
                 {...register("name")}
               />
               <span className={s.error}>{errors.name?.message}</span>
-            </div>
-            <div className={s.inputWrap}>
+            </label>
+            <label className={s.inputWrap}>
               <input
                 className={s.input}
                 placeholder="Email"
@@ -123,16 +124,23 @@ export const RegisterForm = ({ close }) => {
                 {...register("email")}
               />
               <span className={s.error}>{errors.email?.message}</span>
-            </div>
-            <div className={s.inputWrap}>
+            </label>
+            <label className={s.inputWrap}>
               <input
                 className={s.input}
                 placeholder="Password"
-                type="password"
+                type={eye ? "text" : "password"}
                 {...register("password")}
               />
               <span className={s.error}>{errors.password?.message}</span>
-            </div>
+              <button
+                className={s.eyeBtn}
+                type="button"
+                onClick={() => setEye(!eye)}
+              >
+                {eye ? <EyeOpenSvg /> : <EyeCloseSvg />}
+              </button>
+            </label>
           </div>
 
           <button name="submit" className={s.submit} type="submit">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SvgHeart from "../../images/psychologistCard/SvgHeart";
 import SvgOnline from "../../images/psychologistCard/SvgOnline";
 import SvgStar from "../../images/psychologistCard/SvgStar";
@@ -41,6 +41,14 @@ export const PsychologistCard = ({
     setCountFavorites();
     dispatch(toggleHeart(avatar_url));
   }
+
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [modal]);
 
   return (
     <>

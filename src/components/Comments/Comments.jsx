@@ -2,7 +2,7 @@ import s from "./Comments.module.css";
 // import unknown from "../../images/psychologistCard/unknown.png";
 import SvgStar from "../../images/psychologistCard/SvgStar";
 import { Appointment } from "../Appointment/Appointment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Comments = ({ reviews, name, avatar_url }) => {
   const [modal, setModal] = useState(false);
@@ -13,6 +13,14 @@ export const Comments = ({ reviews, name, avatar_url }) => {
   function close() {
     setModal(false);
   }
+
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [modal]);
 
   return (
     <>
