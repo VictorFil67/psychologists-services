@@ -9,8 +9,8 @@
   .heroSection {
     flex-direction: row;
     align-items: center;
-    margin-top: 78px;
-    gap: 125px;
+    margin-top: 38px;
+    /* gap: 45px; */
   }
 }
 @media only screen and (min-width: 1280px) {
@@ -29,6 +29,13 @@
 }
 @media only screen and (min-width: 768px) {
   .leftSide {
+    /* width: 50%; */
+    display: block;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .leftSide {
     display: block;
     max-width: 595px;
   }
@@ -41,6 +48,15 @@
   margin-bottom: 20px;
 }
 @media only screen and (min-width: 768px) {
+  .title {
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 102%;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (min-width: 1280px) {
   .title {
     font-weight: 600;
     font-size: 80px;
@@ -105,7 +121,14 @@
   top: 38px;
   right: -4px;
 }
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
+  .svgUsers {
+    position: absolute;
+    top: 38px;
+    right: -44px;
+  }
+} */
+@media only screen and (min-width: 1280px) {
   .svgUsers {
     position: absolute;
     top: 38px;
@@ -117,7 +140,7 @@
   top: 185px;
   left: -3px;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1280px) {
   .svgQuestion {
     position: absolute;
     top: 185px;
@@ -141,6 +164,21 @@
   transform: rotate(-45deg);
 }
 @media only screen and (min-width: 768px) {
+  .experience {
+    /* position: absolute; */
+    bottom: 70px;
+    right: -20px;
+    /* background-color: var(--green); */
+    padding: 12px;
+    /* border-radius: 20px; */
+    /* display: flex; */
+    /* gap: 16px; */
+    align-items: center;
+    max-width: 311px;
+    /* transform: rotate(0deg); */
+  }
+}
+@media only screen and (min-width: 1280px) {
   .experience {
     /* position: absolute; */
     bottom: 75px;
