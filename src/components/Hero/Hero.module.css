@@ -1,18 +1,53 @@
 .heroSection {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-top: 78px;
-  gap: 125px;
+  margin-top: 20px;
+  gap: 20px;
+}
+@media only screen and (min-width: 768px) {
+  .heroSection {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 78px;
+    gap: 125px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .heroSection {
+    display: flex;
+    align-items: center;
+    margin-top: 78px;
+    gap: 125px;
+  }
 }
 .leftSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 595px;
+}
+@media only screen and (min-width: 768px) {
+  .leftSide {
+    display: block;
+    max-width: 595px;
+  }
 }
 .title {
   font-weight: 600;
-  font-size: 80px;
+  font-size: 38px;
   line-height: 102%;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
+}
+@media only screen and (min-width: 768px) {
+  .title {
+    font-weight: 600;
+    font-size: 80px;
+    line-height: 102%;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
 }
 .titleSpan {
   font-style: italic;
@@ -24,7 +59,17 @@
   font-size: 18px;
   line-height: 133%;
   letter-spacing: -0.02em;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+}
+@media only screen and (min-width: 768px) {
+  .text {
+    /* max-width: 510px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 133%;
+    letter-spacing: -0.02em; */
+    margin-bottom: 40px;
+  }
 }
 .getStarted {
   display: flex;
@@ -58,41 +103,91 @@
 .svgUsers {
   position: absolute;
   top: 38px;
-  right: -44px;
+  right: -4px;
+}
+@media only screen and (min-width: 768px) {
+  .svgUsers {
+    position: absolute;
+    top: 38px;
+    right: -44px;
+  }
 }
 .svgQuestion {
   position: absolute;
   top: 185px;
-  left: -35px;
+  left: -3px;
+}
+@media only screen and (min-width: 768px) {
+  .svgQuestion {
+    position: absolute;
+    top: 185px;
+    left: -35px;
+  }
 }
 .heroImg {
   border-radius: 10px;
 }
 .experience {
   position: absolute;
-  bottom: 75px;
-  left: -101px;
+  bottom: 40px;
+  right: -5px;
   background-color: var(--green);
-  padding: 32px;
+  padding: 12px;
   border-radius: 20px;
   display: flex;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
   max-width: 311px;
+  transform: rotate(-45deg);
+}
+@media only screen and (min-width: 768px) {
+  .experience {
+    /* position: absolute; */
+    bottom: 75px;
+    left: -101px;
+    /* background-color: var(--green); */
+    padding: 32px;
+    /* border-radius: 20px; */
+    /* display: flex; */
+    gap: 16px;
+    align-items: center;
+    max-width: 311px;
+    transform: rotate(0deg);
+  }
 }
 .check {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--white);
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
   border-radius: 13px;
+}
+@media only screen and (min-width: 768px) {
+  .check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    width: 54px;
+    height: 54px;
+    border-radius: 13px;
+  }
 }
 .infoWrap {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-width: 95px;
+}
+@media only screen and (min-width: 768px) {
+  .infoWrap {
+    max-width: 200px;
+    /* display: flex;
+    flex-direction: column;
+    gap: 8px; */
+  }
 }
 .infoText {
   color: rgba(251, 251, 251, 0.5);
@@ -102,5 +197,5 @@
 .infoNumber {
   color: var(--white);
   font-weight: 700;
-  font-size: 24px;
+  font-size: 14px;
 }

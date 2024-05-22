@@ -16,12 +16,15 @@ import { toast } from "react-toastify";
 import s from "./Layout.module.css";
 import AvatarIconSvg from "../../images/SvgAvatarIcon";
 import SvgBurgerMenu from "../../images/SvgBurgerMenu";
+import SvgClose from "../../images/modalIcons/SvgClose";
+// import { Mobile } from "../Mobile/Mobile";
 
 export const Layout = () => {
   const [modalRegistration, setModalRegistration] = useState(false);
   const [modalLogIn, setModalLogIn] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-  // console.log(mobileMenu);
+  console.log(window.innerWidth);
+  console.log(mobileMenu);
 
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -34,6 +37,16 @@ export const Layout = () => {
   function close() {
     setModalRegistration(false);
     setModalLogIn(false);
+    setMobileMenu(false);
+  }
+  function toggle(setModal) {
+    setMobileMenu(false);
+    setModal(true);
+  }
+  function handleClick(e) {
+    if (e.target === e.currentTarget) {
+      setMobileMenu(false);
+    }
   }
   function getExit() {
     const auth = getAuth();
@@ -51,12 +64,12 @@ export const Layout = () => {
     // dispatch(logout());
   }
   useEffect(() => {
-    if (modalRegistration || modalLogIn) {
+    if (modalRegistration || modalLogIn || mobileMenu) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [modalRegistration, modalLogIn]);
+  }, [modalRegistration, modalLogIn, mobileMenu]);
 
   return (
     <>
@@ -73,9 +86,18 @@ export const Layout = () => {
             <Link to={"/"} className={s.logo}>
               <span className={s.logoSpan}>psychologists.</span>services
             </Link>
-
-            <div className={s.navWrap}>
-              <nav className={mobileMenu ? s.nav + " " + s.active : s.nav}>
+            {mobileMenu && (
+              <div className={s.mobileOverlay} onClick={handleClick}></div>
+            )}
+            <div
+              className={mobileMenu ? s.navWrap + " " + s.active : s.navWrap}
+            >
+              {mobileMenu && (
+                <button className={s.closeButton} onClick={close}>
+                  <SvgClose />
+                </button>
+              )}
+              <nav className={s.nav}>
                 <NavLink
                   to={"/"}
                   className={s.pageLink}
@@ -113,7 +135,7 @@ export const Layout = () => {
                     <button
                       className={s.loginButton}
                       onClick={() => {
-                        open(setModalLogIn);
+                        toggle(setModalLogIn);
                       }}
                     >
                       Log In
@@ -121,7 +143,7 @@ export const Layout = () => {
                     <button
                       className={s.registrationButton}
                       onClick={() => {
-                        open(setModalRegistration);
+                        toggle(setModalRegistration);
                       }}
                     >
                       Registration
@@ -140,11 +162,27 @@ export const Layout = () => {
                 )}
               </div>
             </div>
-            <button className={s.menuButton} onClick={setMobileMenu}>
+            {/* </div> */}
+            <button
+              className={s.menuButton}
+              onClick={() => {
+                open(setMobileMenu);
+              }}
+            >
               <SvgBurgerMenu />
             </button>
             {modalLogIn && <LoginForm close={close} />}
             {modalRegistration && <RegisterForm close={close} />}
+            {/* {mobileMenu && (
+              // <Mobile
+              //   // mobileMenu={mobileMenu}
+              //   close={close}
+              //   // open={open}
+              //   // setModalLogIn={setModalLogIn}
+              //   // setModalRegistration={setModalRegistration}
+              //   // getExit={getExit}
+              // />
+            )} */}
           </div>
         </div>
       </header>
