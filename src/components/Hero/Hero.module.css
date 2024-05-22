@@ -79,11 +79,6 @@
 }
 @media only screen and (min-width: 768px) {
   .text {
-    /* max-width: 510px;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 133%;
-    letter-spacing: -0.02em; */
     margin-bottom: 40px;
   }
 }

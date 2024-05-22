@@ -1,9 +1,20 @@
 .card {
+  position: relative;
   background-color: var(--white);
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  padding: 24px;
+  padding: 12px;
   border-radius: 24px;
+}
+@media only screen and (min-width: 768px) {
+  .card {
+    background-color: var(--white);
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 24px;
+    border-radius: 24px;
+  }
 }
 .cardImgWrap {
   position: relative;
@@ -25,9 +36,24 @@
   border-radius: 15px;
 }
 .cardInfo {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  /* max-width: 140px; */
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-end;
+  /* justify-content: space-between; */
   margin-bottom: 8px;
+}
+@media only screen and (min-width: 768px) {
+  .cardInfo {
+    /* max-width: 340px; */
+    position: static;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
 }
 .psychologist {
   font-weight: 500;
@@ -37,26 +63,59 @@
 }
 .cardInfoList {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+@media only screen and (min-width: 768px) {
+  .cardInfoList {
+    flex-direction: row;
+    gap: 0;
+    /* justify-content: space-between;
+    margin-bottom: 8px; */
+  }
 }
 .cardInfoItem {
   display: flex;
   align-items: center;
-
+  justify-content: flex-end;
   &:nth-child(1) {
-    border-right: 1px solid rgba(25, 26, 21, 0.2);
-    padding-right: 16px;
-    margin-right: 16px;
+    /* border-right: 1px solid rgba(25, 26, 21, 0.2); */
+    /* padding-right: 16px;
+    margin-right: 16px; */
+    /* justify-content: flex-end; */
     p {
       padding-left: 8px;
     }
   }
-  &:nth-child(2) {
-    margin-right: 28px;
+}
+@media only screen and (min-width: 768px) {
+  .cardInfoItem {
+    /* display: flex; */
+    /* align-items: flex-end; */
+
+    &:nth-child(1) {
+      border-right: 1px solid rgba(25, 26, 21, 0.2);
+      padding-right: 16px;
+      margin-right: 16px;
+      p {
+        padding-left: 8px;
+      }
+    }
+    &:nth-child(2) {
+      margin-right: 28px;
+    }
   }
 }
 .cardInfoText {
+  font-size: 14px;
   font-weight: 500;
   line-height: 150%;
+}
+@media only screen and (min-width: 768px) {
+  .cardInfoText {
+    font-weight: 500;
+    line-height: 150%;
+  }
 }
 .price {
   color: #38cd3e;
@@ -77,7 +136,16 @@
 .name {
   font-size: 24px;
   font-weight: 500;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
+  margin-top: 10px;
+}
+@media only screen and (min-width: 768px) {
+  .name {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    margin-top: 0;
+  }
 }
 .qualityList {
   display: flex;
@@ -87,7 +155,14 @@
 }
 .qualityRow {
   display: flex;
+  flex-direction: column;
   gap: 4px;
+}
+@media only screen and (min-width: 768px) {
+  .qualityRow {
+    flex-direction: row;
+    gap: 4px;
+  }
 }
 .quality {
   background: #f3f3f3;

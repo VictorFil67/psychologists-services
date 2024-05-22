@@ -13,9 +13,25 @@
   overflow: auto;
 }
 .modal {
+  position: relative;
   border: 2px solid red;
   padding: 20px;
   color: red;
   background-color: var(--green);
   border-radius: 14px;
+  max-width: 273px;
+}
+@media only screen and (min-width: 768px) {
+  .modal {
+    min-width: 635px;
+    padding: 35px 20px;
+  }
+}
+.closeButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
 }

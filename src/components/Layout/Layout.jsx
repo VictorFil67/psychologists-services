@@ -63,6 +63,10 @@ export const Layout = () => {
       });
     // dispatch(logout());
   }
+  function handleExit() {
+    getExit();
+    setMobileMenu(false);
+  }
   useEffect(() => {
     if (modalRegistration || modalLogIn || mobileMenu) {
       document.body.style.overflow = "hidden";
@@ -155,7 +159,7 @@ export const Layout = () => {
                       <AvatarIconSvg />
                       <p className={s.username}>{user?.name ?? "user"}</p>
                     </div>
-                    <button className={s.logoutButton} onClick={getExit}>
+                    <button className={s.logoutButton} onClick={handleExit}>
                       Log Out
                     </button>
                   </>

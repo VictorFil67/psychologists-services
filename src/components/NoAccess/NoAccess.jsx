@@ -1,3 +1,4 @@
+import SvgClose from "../../images/modalIcons/SvgClose";
 import s from "./NoAccess.module.css";
 
 export const NoAccess = ({ close }) => {
@@ -19,6 +20,9 @@ export const NoAccess = ({ close }) => {
   return (
     <div className={s.overlay} onClick={handleClick}>
       <div className={s.modal}>
+        <button className={s.closeButton} onClick={close}>
+          <SvgClose />
+        </button>
         <h1>No access! For authorized users only!</h1>
       </div>
     </div>

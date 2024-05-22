@@ -1,12 +1,25 @@
 .psychologistsList {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  margin: 32px 0 64px 0;
+  gap: 16px;
+  margin: 16px 0 32px 0;
+}
+@media only screen and (min-width: 768px) {
+  .psychologistsList {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin: 32px 0 64px 0;
+  }
 }
 .messageWrap {
   display: flex;
-  padding: 100px;
+  padding: 100px 20px;
+}
+@media only screen and (min-width: 768px) {
+  .messageWrap {
+    padding: 100px;
+  }
 }
 .message {
   margin: 0 auto;
