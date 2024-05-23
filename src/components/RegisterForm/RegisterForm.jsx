@@ -14,6 +14,7 @@ import {
 import { setUser } from "../../store/auth/authSlice";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { Loader } from "../Loader/Loader";
 
 const schema = yup.object({
   name: yup
@@ -36,6 +37,7 @@ const schema = yup.object({
 
 export const RegisterForm = ({ close }) => {
   const [eye, setEye] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const {
@@ -48,6 +50,7 @@ export const RegisterForm = ({ close }) => {
   });
 
   function onSubmit({ email, password, name }) {
+    setLoading(true);
     const auth = getAuth();
 
     createUserWithEmailAndPassword(auth, email, password, name)
@@ -73,7 +76,8 @@ export const RegisterForm = ({ close }) => {
         const errorMessage = error.message;
         toast.error(errorMessage);
         // ..
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   function handleClick(e) {
@@ -92,62 +96,65 @@ export const RegisterForm = ({ close }) => {
   }
 
   return (
-    <div className={s.overlay} onClick={handleClick}>
-      <div className={s.modal}>
-        <button className={s.closeButton} onClick={close}>
-          <SvgClose />
-        </button>
-        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <div className={s.info}>
-            <h1 className={s.formTitle}>Registration</h1>
-            <p className={s.formText}>
-              Thank you for your interest in our platform! In order to register,
-              we need some information. Please provide us with the following
-              information.
-            </p>
-          </div>
-          <div className={s.inputBlockWrap}>
-            <label className={s.inputWrap}>
-              <input
-                className={s.input}
-                placeholder="Name"
-                type="text"
-                {...register("name")}
-              />
-              <span className={s.error}>{errors.name?.message}</span>
-            </label>
-            <label className={s.inputWrap}>
-              <input
-                className={s.input}
-                placeholder="Email"
-                type="text"
-                {...register("email")}
-              />
-              <span className={s.error}>{errors.email?.message}</span>
-            </label>
-            <label className={s.inputWrap}>
-              <input
-                className={s.input}
-                placeholder="Password"
-                type={eye ? "text" : "password"}
-                {...register("password")}
-              />
-              <span className={s.error}>{errors.password?.message}</span>
-              <button
-                className={s.eyeBtn}
-                type="button"
-                onClick={() => setEye(!eye)}
-              >
-                {eye ? <EyeOpenSvg /> : <EyeCloseSvg />}
-              </button>
-            </label>
-          </div>
-
-          <button name="submit" className={s.submit} type="submit">
-            Sign Up
+    <>
+      {loading && <Loader />}
+      <div className={s.overlay} onClick={handleClick}>
+        <div className={s.modal}>
+          <button className={s.closeButton} onClick={close}>
+            <SvgClose />
           </button>
-        </form>
+          <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+            <div className={s.info}>
+              <h1 className={s.formTitle}>Registration</h1>
+              <p className={s.formText}>
+                Thank you for your interest in our platform! In order to
+                register, we need some information. Please provide us with the
+                following information.
+              </p>
+            </div>
+            <div className={s.inputBlockWrap}>
+              <label className={s.inputWrap}>
+                <input
+                  className={s.input}
+                  placeholder="Name"
+                  type="text"
+                  {...register("name")}
+                />
+                <span className={s.error}>{errors.name?.message}</span>
+              </label>
+              <label className={s.inputWrap}>
+                <input
+                  className={s.input}
+                  placeholder="Email"
+                  type="text"
+                  {...register("email")}
+                />
+                <span className={s.error}>{errors.email?.message}</span>
+              </label>
+              <label className={s.inputWrap}>
+                <input
+                  className={s.input}
+                  placeholder="Password"
+                  type={eye ? "text" : "password"}
+                  {...register("password")}
+                />
+                <span className={s.error}>{errors.password?.message}</span>
+                <button
+                  className={s.eyeBtn}
+                  type="button"
+                  onClick={() => setEye(!eye)}
+                >
+                  {eye ? <EyeOpenSvg /> : <EyeCloseSvg />}
+                </button>
+              </label>
+            </div>
+
+            <button name="submit" className={s.submit} type="submit">
+              Sign Up
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };

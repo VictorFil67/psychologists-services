@@ -3,6 +3,7 @@ import { Filters } from "../../components/Filters/Filters";
 import { LoadMore } from "../../components/LoadMore/LoadMore";
 import { Psychologists } from "../../components/Psychologists/Psychologists";
 import {
+  selectFavorites,
   // selectFavorites,
   selectfavoritesPage,
   selectfavoritesPsychologists,
@@ -23,13 +24,16 @@ import {
   query,
   ref,
 } from "firebase/database";
+import { Loader } from "../../components/Loader/Loader";
 
 export const FavoritesPage = ({ location, setCount, countFavorites }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const favoritesPage = useSelector(selectfavoritesPage);
   const favoritesPsychologists = useSelector(selectfavoritesPsychologists);
   const favoritesShow = useSelector(selectfavoritesShow);
+  const favorites = useSelector(selectFavorites);
   // const favorites = useSelector(selectFavorites);
   // const [countFavorites, setCountFavorites] = useState(favorites.length);
   const limit = 3;
@@ -44,6 +48,11 @@ export const FavoritesPage = ({ location, setCount, countFavorites }) => {
   // const setCount = () => {
   //   setCountFavorites(favorites.length);
   // };
+  useEffect(() => {
+    favoritesPsychologists.length === 0 && favorites.length > 0
+      ? setLoading(true)
+      : setLoading(false);
+  }, [favoritesPsychologists, favorites]);
 
   useEffect(() => {
     // console.log(prevLocation);
@@ -161,6 +170,7 @@ export const FavoritesPage = ({ location, setCount, countFavorites }) => {
 
   return (
     <>
+      {loading && <Loader />}
       <Filters
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}

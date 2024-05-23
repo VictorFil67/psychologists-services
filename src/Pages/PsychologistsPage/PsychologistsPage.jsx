@@ -24,23 +24,21 @@ import {
   selectSorted,
 } from "../../store/psychologists/selectors";
 import { usePrevios } from "../../hooks/usePrevios";
+import { Loader } from "../../components/Loader/Loader";
 
 export const PsychologistsPage = ({ location, setCount }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
   const psychologists = useSelector(selectPsychologists);
   const sorted = useSelector(selectSorted);
   const limit = 3;
 
-  //Hook for getting the previous state
-  // const usePrevios = (value) => {
-  //   const ref = useRef();
-  //   useEffect(() => {
-  //     ref.current = value;
-  //   });
-  //   return ref.current;
-  // };
+  useEffect(() => {
+    psychologists.length === 0 ? setLoading(true) : setLoading(false);
+  }, [psychologists]);
+
   const prevSelectedOption = usePrevios(selectedOption);
   const prev = prevSelectedOption?.value;
   const now = selectedOption?.value;
@@ -182,6 +180,7 @@ export const PsychologistsPage = ({ location, setCount }) => {
 
   return (
     <>
+      {loading && <Loader />}
       <Filters
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}

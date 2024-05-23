@@ -12,6 +12,7 @@ import { selectUser } from "./store/auth/selectors";
 // import { toast } from "react-toastify";
 import PrivateRoute from "./routes/PrivateRoute";
 import { selectFavorites } from "./store/psychologists/selectors";
+import { Loader } from "./components/Loader/Loader";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
   const [location, setLocation] = useState(pathname);
   const favorites = useSelector(selectFavorites);
   const [countFavorites, setCountFavorites] = useState(favorites.length);
+  const [loading, setLoading] = useState(false);
 
   const setCount = () => {
     setCountFavorites(favorites.length);
@@ -31,6 +33,7 @@ function App() {
 
   useEffect(() => {
     if (!user) {
+      setLoading(true);
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -44,8 +47,9 @@ function App() {
               token: user.accessToken,
             })
           );
-          // ...
+          setLoading(false);
         } else {
+          setLoading(false);
           // toast.info("User is signed out");
         }
       });
@@ -53,7 +57,7 @@ function App() {
   }, [dispatch, user]);
   return (
     <>
-      {/* {isLoading && <Loader />} */}
+      {loading && <Loader />}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import EyeOpenSvg from "../../images/modalIcons/EyeOpenSvg";
 import EyeCloseSvg from "../../images/modalIcons/EyeCloseSvg";
+import { Loader } from "../Loader/Loader";
 
 const schema = yup.object({
   email: yup
@@ -27,6 +28,7 @@ const schema = yup.object({
 
 export const LoginForm = ({ close }) => {
   const [eye, setEye] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const {
@@ -39,6 +41,7 @@ export const LoginForm = ({ close }) => {
   });
 
   function onSubmit({ email, password }) {
+    setLoading(true);
     const auth = getAuth();
 
     signInWithEmailAndPassword(auth, email, password)
@@ -62,7 +65,8 @@ export const LoginForm = ({ close }) => {
         const errorCode = err.code;
         toast.error(errorCode);
         // ..
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   function handleClick(e) {
@@ -81,52 +85,55 @@ export const LoginForm = ({ close }) => {
   }
 
   return (
-    <div className={s.overlay} onClick={handleClick}>
-      <div className={s.modal}>
-        <button className={s.closeButton} onClick={close}>
-          <SvgClose />
-        </button>
-        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <div className={s.info}>
-            <h1 className={s.formTitle}>Log In</h1>
-            <p className={s.formText}>
-              Welcome back! Please enter your credentials to access your account
-              and continue your search for a psychologist.
-            </p>
-          </div>
-          <div className={s.inputBlockWrap}>
-            <label className={s.inputWrap}>
-              <input
-                className={s.input}
-                placeholder="Email"
-                type="text"
-                {...register("email")}
-              />
-              <span className={s.error}>{errors.email?.message}</span>
-            </label>
-            <label className={s.inputWrap}>
-              <input
-                className={s.input}
-                placeholder="Password"
-                type={eye ? "text" : "password"}
-                {...register("password")}
-              />
-              <span className={s.error}>{errors.password?.message}</span>
-              <button
-                className={s.eyeBtn}
-                type="button"
-                onClick={() => setEye(!eye)}
-              >
-                {eye ? <EyeOpenSvg /> : <EyeCloseSvg />}
-              </button>
-            </label>
-          </div>
-
-          <button name="submit" className={s.submit} type="submit">
-            Log In
+    <>
+      {loading && <Loader />}
+      <div className={s.overlay} onClick={handleClick}>
+        <div className={s.modal}>
+          <button className={s.closeButton} onClick={close}>
+            <SvgClose />
           </button>
-        </form>
+          <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+            <div className={s.info}>
+              <h1 className={s.formTitle}>Log In</h1>
+              <p className={s.formText}>
+                Welcome back! Please enter your credentials to access your
+                account and continue your search for a psychologist.
+              </p>
+            </div>
+            <div className={s.inputBlockWrap}>
+              <label className={s.inputWrap}>
+                <input
+                  className={s.input}
+                  placeholder="Email"
+                  type="text"
+                  {...register("email")}
+                />
+                <span className={s.error}>{errors.email?.message}</span>
+              </label>
+              <label className={s.inputWrap}>
+                <input
+                  className={s.input}
+                  placeholder="Password"
+                  type={eye ? "text" : "password"}
+                  {...register("password")}
+                />
+                <span className={s.error}>{errors.password?.message}</span>
+                <button
+                  className={s.eyeBtn}
+                  type="button"
+                  onClick={() => setEye(!eye)}
+                >
+                  {eye ? <EyeOpenSvg /> : <EyeCloseSvg />}
+                </button>
+              </label>
+            </div>
+
+            <button name="submit" className={s.submit} type="submit">
+              Log In
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
