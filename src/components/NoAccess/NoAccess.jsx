@@ -12,7 +12,6 @@ export const NoAccess = ({ close }) => {
   function onWindowEscape(e) {
     if (e.code === "Escape") {
       close();
-      console.log("first");
       document.removeEventListener("keydown", onWindowEscape);
     }
   }

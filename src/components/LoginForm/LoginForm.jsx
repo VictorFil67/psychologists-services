@@ -46,7 +46,6 @@ export const LoginForm = ({ close }) => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        console.log("login");
         dispatch(
           setUser({
             user: {
@@ -79,7 +78,6 @@ export const LoginForm = ({ close }) => {
   function onWindowEscape(e) {
     if (e.code === "Escape") {
       close();
-      console.log("first");
       document.removeEventListener("keydown", onWindowEscape);
     }
   }

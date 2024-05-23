@@ -22,9 +22,6 @@ export const Layout = () => {
   const [modalRegistration, setModalRegistration] = useState(false);
   const [modalLogIn, setModalLogIn] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-  console.log(window.innerWidth);
-  console.log(mobileMenu);
-
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const navigate = useNavigate();

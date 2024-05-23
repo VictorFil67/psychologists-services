@@ -90,7 +90,6 @@ export const RegisterForm = ({ close }) => {
   function onWindowEscape(e) {
     if (e.code === "Escape") {
       close();
-      console.log("first");
       document.removeEventListener("keydown", onWindowEscape);
     }
   }

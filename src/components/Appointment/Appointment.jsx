@@ -20,7 +20,7 @@ const schema = yup.object({
     .required("The email is required"),
   tel: yup
     .string()
-    .min(10, "The phone must contain a minimum of 10 characters")
+    .min(12, "The phone must contain a minimum of 12 characters")
     .required("The phone is required"),
   time: yup
     .string()

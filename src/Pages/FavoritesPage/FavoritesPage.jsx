@@ -72,12 +72,9 @@ const FavoritesPage = ({ location, setCount, countFavorites }) => {
     if (favoritesPage === 0 || prevCountFavorites !== countFavorites) {
       onValue(currentQuery, (snapshot) => {
         const data = snapshot.val();
-        console.log(data);
         if (data.length) {
           dispatch(setFavorites(data));
         }
-        console.log(prevCountFavorites, countFavorites);
-        console.log("getData end");
       });
     }
   }, [dispatch, favoritesPage, prevCountFavorites, countFavorites]);
@@ -86,27 +83,24 @@ const FavoritesPage = ({ location, setCount, countFavorites }) => {
     const database = getDatabase();
     const dbRef = ref(database);
     const sortedData = [];
-    console.log(prev + "==>" + now);
+
     if (
       (prev !== now && prevLocation === location) ||
       prevCountFavorites !== countFavorites
     ) {
       const selectedValue = Object.values(selectedOption)[0].split(" ")[0];
       const selectedOrder = Object.values(selectedOption)[0].split(" ")[1];
-      console.log(selectedOrder);
       const currentQuery = query(dbRef, orderByChild(selectedValue));
+
       onValue(currentQuery, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          const childKey = childSnapshot.key;
           const childData = childSnapshot.val();
-          console.log(`${childKey} : ${childData[selectedValue]}`);
           sortedData.push(childData);
         });
 
         if (selectedOrder) {
           sortedData.reverse();
         }
-        console.log(sortedData);
         dispatch(setFavorites(sortedData));
       });
     }
