@@ -26,7 +26,7 @@ import {
 } from "firebase/database";
 import { Loader } from "../../components/Loader/Loader";
 
-export const FavoritesPage = ({ location, setCount, countFavorites }) => {
+const FavoritesPage = ({ location, setCount, countFavorites }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -184,3 +184,5 @@ export const FavoritesPage = ({ location, setCount, countFavorites }) => {
     </>
   );
 };
+
+export default FavoritesPage;

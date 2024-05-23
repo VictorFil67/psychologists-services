@@ -26,7 +26,7 @@ import {
 import { usePrevios } from "../../hooks/usePrevios";
 import { Loader } from "../../components/Loader/Loader";
 
-export const PsychologistsPage = ({ location, setCount }) => {
+const PsychologistsPage = ({ location, setCount }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -190,3 +190,5 @@ export const PsychologistsPage = ({ location, setCount }) => {
     </>
   );
 };
+
+export default PsychologistsPage;
