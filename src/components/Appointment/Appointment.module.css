@@ -1,16 +1,14 @@
 .overlay {
   position: fixed;
   top: 0;
-  /* bottom: 0; */
   left: 0;
-  /* right: 0; */
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: rgba(25, 26, 21, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 1;
 }
 .modal {
   display: flex;
@@ -18,44 +16,81 @@
   justify-content: center;
   align-items: flex-start;
   background-color: var(--white);
-  border-radius: 30px;
-  padding: 64px;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 0 20px;
   position: relative;
-  z-index: 9999;
+  z-index: 3;
+}
+@media only screen and (min-width: 768px) {
+  .modal {
+    border-radius: 30px;
+    padding: 64px;
+    margin: 0;
+  }
 }
 .CloseBtn {
   position: absolute;
-  right: 15px;
-  top: 20px;
+  right: 10px;
+  top: 10px;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
+@media only screen and (min-width: 768px) {
+  .closeButton {
+    top: 20px;
+    right: 20px;
+  }
+}
 .title {
   font-weight: 500;
-  font-size: 40px;
+  font-size: 24px;
   line-height: 120%;
   letter-spacing: -0.02em;
-  margin-bottom: 20px;
-
-  &[data-appointment=""] {
+  width: 238px;
+  min-width: 100%;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  /* &[data-appointment=""] {
     max-width: 472px;
+  } */
+}
+@media only screen and (min-width: 768px) {
+  .title {
+    max-width: 472px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-top: 0;
   }
 }
 .text {
   line-height: 1.25;
   color: rgba(25, 26, 21, 0.5);
-  margin-bottom: 40px;
-  max-width: 438px;
-  &[data-appointment=""] {
+  margin-bottom: 20px;
+  /* width: 238px; */
+  min-width: 100%;
+  max-width: 472px;
+  /* &[data-appointment=""] {
     max-width: 472px;
+  } */
+}
+@media only screen and (min-width: 768px) {
+  .text {
+    width: 472px;
+    margin-bottom: 40px;
   }
 }
 .psychologistwrap {
   display: flex;
   min-width: 174px;
   gap: 14px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+}
+@media only screen and (min-width: 768px) {
+  .psychologistwrap {
+    margin-bottom: 40px;
+  }
 }
 .psychologistImg {
   border-radius: 15px;
@@ -83,14 +118,15 @@ height: 44px; */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
+  width: 100%;
 }
 .input {
-  padding: 16px 18px;
+  padding: 8px 18px;
   border: 1px solid rgba(25, 26, 21, 0.1);
   border-radius: 12px;
-  width: 472px;
-  height: 52px;
+  width: 238px;
+  min-width: 100%;
 
   outline: none;
   &::placeholder {
@@ -101,25 +137,56 @@ height: 44px; */
     border: 1px solid var(--green);
   }
 }
+@media only screen and (min-width: 768px) {
+  .input {
+    padding: 16px 18px;
+    width: 472px;
+    height: 52px;
+  }
+}
+.time {
+  padding: 6px 18px;
+}
+@media only screen and (min-width: 768px) {
+  .time {
+    padding: 16px 18px;
+  }
+}
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+}
 .box {
   display: flex;
   gap: 8px;
 
   input {
-    max-width: 232px;
+    width: 115px;
+    min-width: 100%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .box {
+    input {
+      width: 232px;
+    }
   }
 }
 .inputBox {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-width: 232px;
+  flex-grow: 1;
+  /* gap: 8px; */
+  /* max-width: 232px; */
 }
 .textarea {
-  padding: 16px 18px;
+  padding: 8px 18px;
   border: 1px solid rgba(25, 26, 21, 0.1);
   border-radius: 12px;
-  width: 472px;
+  width: 238px;
+  min-width: 100%;
   height: 116px;
 
   outline: none;
@@ -131,22 +198,36 @@ height: 44px; */
     border: 1px solid var(--green);
   }
 }
+@media only screen and (min-width: 768px) {
+  .textarea {
+    padding: 16px 18px;
+    width: 472px;
+  }
+}
 .button {
-  margin-top: 22px;
+  margin-top: 4px;
   border-radius: 30px;
-  padding: 16px 196px;
+  padding: 10px;
   border: none;
   background-color: var(--green);
   color: var(--white);
-  cursor: pointer;
   transition: all 0.3s;
-  max-width: 438px;
+  /* max-width: 472px; */
   white-space: nowrap;
+  line-height: 1.25;
 
   &:hover {
     background-color: var(--hover-green);
   }
-  &[data-appointment=""] {
+  /* &[data-appointment=""] {
     max-width: 472px;
+  } */
+}
+@media only screen and (min-width: 768px) {
+  .button {
+    padding: 16px 196px;
+    max-width: 472px;
+    white-space: nowrap;
+    margin-top: 24px;
   }
 }

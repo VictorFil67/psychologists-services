@@ -28,6 +28,7 @@ const schema = yup.object({
     .required("The phone is required"),
   time: yup
     .string()
+    .notOneOf(["00:00"], "Please specify the time")
     // .min("00:01", "The time must be chosen")
     .required("The time is required"),
   comment: yup
@@ -97,14 +98,16 @@ export const Appointment = ({ close, name, avatar_url }) => {
           </div>
         </div>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <input
-            className={s.input}
-            {...register("name")}
-            type="text"
-            placeholder="Name"
-            // name="name"
-          />
-          <span className={s.error}>{errors.name?.message}</span>
+          <div className={s.inputBox}>
+            <input
+              className={s.input}
+              {...register("name")}
+              type="text"
+              placeholder="Name"
+              // name="name"
+            />
+            <span className={s.error}>{errors.name?.message}</span>
+          </div>
           <div className={s.box}>
             <div className={s.inputBox}>
               <input
@@ -118,7 +121,7 @@ export const Appointment = ({ close, name, avatar_url }) => {
             </div>
             <div className={s.inputBox}>
               <input
-                className={s.input}
+                className={s.input + " " + s.time}
                 {...register("time")}
                 type="time"
                 placeholder=""
@@ -130,21 +133,25 @@ export const Appointment = ({ close, name, avatar_url }) => {
               <span className={s.error}>{errors.time?.message}</span>
             </div>
           </div>
-          <input
-            className={s.input}
-            {...register("email")}
-            type="text"
-            placeholder="Email"
-            // name="email"
-          />
-          <span className={s.error}>{errors.email?.message}</span>
-          <textarea
-            className={s.textarea}
-            {...register("comment")}
-            placeholder="Comment"
-            // name="comment"
-          ></textarea>
-          <span className={s.error}>{errors.comment?.message}</span>
+          <div className={s.inputBox}>
+            <input
+              className={s.input}
+              {...register("email")}
+              type="text"
+              placeholder="Email"
+              // name="email"
+            />
+            <span className={s.error}>{errors.email?.message}</span>
+          </div>
+          <div className={s.inputBox}>
+            <textarea
+              className={s.textarea}
+              {...register("comment")}
+              placeholder="Comment"
+              // name="comment"
+            ></textarea>
+            <span className={s.error}>{errors.comment?.message}</span>
+          </div>
           <button className={s.button} type="submit">
             Send
           </button>
