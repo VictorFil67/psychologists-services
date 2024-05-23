@@ -1,6 +1,3 @@
-// import { getDatabase, onValue, ref } from "firebase/database";
-// import { firebaseApp } from "../../firebase";
-// import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   selectFavorites,
@@ -10,16 +7,10 @@ import {
 import { PsychologistCard } from "../PsychologistCard/PsychologistCard";
 import s from "./Psychologists.module.css";
 
-export const Psychologists = ({
-  location,
-  setCountFavorites,
-  // countFavorites,
-}) => {
+export const Psychologists = ({ location, setCountFavorites }) => {
   const psychologists = useSelector(selectPsychologists);
   const favoritesShow = useSelector(selectfavoritesShow);
   const favorites = useSelector(selectFavorites);
-
-  // console.log(location);
 
   return (
     <>
@@ -32,7 +23,6 @@ export const Psychologists = ({
                 data={item}
                 {...item}
                 setCountFavorites={setCountFavorites}
-                // countFavorites={countFavorites}
               />
             ))}
           </ul>

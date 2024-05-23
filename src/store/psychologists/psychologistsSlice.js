@@ -57,11 +57,6 @@ const psychologistsSlice = createSlice({
       state.favoritesShow = payload.favoritesShow;
       state.favoritesPage = payload.favoritesPage;
     },
-    // setInitialState(state) {
-    //   state.psychologists = [];
-    //   state.sorted = [];
-    //   state.page = 0;
-    // },
   },
 });
 
@@ -69,7 +64,6 @@ export const {
   setPsychologists,
   handleLoadMore,
   setSorted,
-  // setInitialState,
   setCurrentState,
   toggleHeart,
   setFavorites,

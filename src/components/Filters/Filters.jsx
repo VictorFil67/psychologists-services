@@ -24,6 +24,7 @@ export const Filters = ({ selectedOption, setSelectedOption }) => {
           components={{
             IndicatorSeparator: () => null,
           }}
+          aria-label="Filters"
           placeholder="A to Z"
           styles={{
             control: (b, s) => ({
@@ -31,7 +32,6 @@ export const Filters = ({ selectedOption, setSelectedOption }) => {
               borderRadius: "14px",
 
               boxShadow: s.isFocused ? "var(--green)" : "var(--green)",
-              // padding: "16px 162px 16px 18px",
               width: "226px",
               height: "48px",
               cursor: "pointer",
@@ -100,25 +100,6 @@ export const Filters = ({ selectedOption, setSelectedOption }) => {
                   transform: "rotate(180deg)",
                 }),
               },
-
-              // "::-webkit-scrollbar": {
-              //   width: "8px",
-              // },
-              // "::-webkit-scrollbar-track": {
-              //   borderRadius: "10px",
-
-              //   background: "rgba(255, 255, 255, 0.05)",
-              // },
-              // "::-webkit-scrollbar-thumb": {
-              //   borderRadius: "10px",
-
-              //   background: "rgba(18, 20, 23, 0.05)",
-              // },
-              // "::-webkit-scrollbar-thumb:hover": {
-              //   borderRadius: "10px",
-
-              //   background: "rgba(7, 8, 9, 0.05)",
-              // },
             }),
           }}
         />

@@ -89,7 +89,7 @@ export const LoginForm = ({ close }) => {
       {loading && <Loader />}
       <div className={s.overlay} onClick={handleClick}>
         <div className={s.modal}>
-          <button className={s.closeButton} onClick={close}>
+          <button className={s.closeButton} onClick={close} aria-label="close">
             <SvgClose />
           </button>
           <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
@@ -122,13 +122,19 @@ export const LoginForm = ({ close }) => {
                   className={s.eyeBtn}
                   type="button"
                   onClick={() => setEye(!eye)}
+                  aria-label="show or hide password"
                 >
                   {eye ? <EyeOpenSvg /> : <EyeCloseSvg />}
                 </button>
               </label>
             </div>
 
-            <button name="submit" className={s.submit} type="submit">
+            <button
+              name="submit"
+              className={s.submit}
+              type="submit"
+              aria-label="Log In"
+            >
               Log In
             </button>
           </form>

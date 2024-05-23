@@ -1,5 +1,4 @@
 import s from "./Comments.module.css";
-// import unknown from "../../images/psychologistCard/unknown.png";
 import SvgStar from "../../images/psychologistCard/SvgStar";
 import { Appointment } from "../Appointment/Appointment";
 import { useEffect, useState } from "react";
@@ -31,7 +30,6 @@ export const Comments = ({ reviews, name, avatar_url }) => {
         {reviews.map(({ comment, rating, reviewer }, idx) => (
           <li key={idx}>
             <div className={s.reviewer}>
-              {/* <img className={s.reviewerImg} src={unknown} alt={reviewer} /> */}
               <div className={s.avatar}>
                 <span className={s.letter}>{reviewer.slice(0, 1)}</span>
               </div>
@@ -47,7 +45,11 @@ export const Comments = ({ reviews, name, avatar_url }) => {
           </li>
         ))}
       </ul>
-      <button className={s.appointment} onClick={open}>
+      <button
+        className={s.appointment}
+        onClick={open}
+        aria-label="Make an appointment"
+      >
         Make an appointment
       </button>
     </>

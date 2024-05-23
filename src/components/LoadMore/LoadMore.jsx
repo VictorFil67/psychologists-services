@@ -27,8 +27,9 @@ export const LoadMore = ({ location }) => {
             <button
               className={s.loadMore}
               onClick={() => dispatch(handleLoadMore())}
+              aria-label="Load more"
             >
-              LoadMore
+              Load more
             </button>
           )}
         </div>
@@ -39,6 +40,7 @@ export const LoadMore = ({ location }) => {
               <button
                 className={s.loadMore}
                 onClick={() => dispatch(favoritesHandleLoadMore())}
+                aria-label="Load more"
               >
                 LoadMore
               </button>

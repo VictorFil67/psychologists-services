@@ -4,7 +4,6 @@ import { LoadMore } from "../../components/LoadMore/LoadMore";
 import { Psychologists } from "../../components/Psychologists/Psychologists";
 import {
   selectFavorites,
-  // selectFavorites,
   selectfavoritesPage,
   selectfavoritesPsychologists,
   selectfavoritesShow,
@@ -34,8 +33,6 @@ const FavoritesPage = ({ location, setCount, countFavorites }) => {
   const favoritesPsychologists = useSelector(selectfavoritesPsychologists);
   const favoritesShow = useSelector(selectfavoritesShow);
   const favorites = useSelector(selectFavorites);
-  // const favorites = useSelector(selectFavorites);
-  // const [countFavorites, setCountFavorites] = useState(favorites.length);
   const limit = 3;
 
   const prevSelectedOption = usePrevios(selectedOption);
@@ -45,9 +42,6 @@ const FavoritesPage = ({ location, setCount, countFavorites }) => {
   const prevLocation = usePrevios(location);
   const prevCountFavorites = usePrevios(countFavorites);
 
-  // const setCount = () => {
-  //   setCountFavorites(favorites.length);
-  // };
   useEffect(() => {
     favoritesPsychologists.length === 0 && favorites.length > 0
       ? setLoading(true)
@@ -55,10 +49,7 @@ const FavoritesPage = ({ location, setCount, countFavorites }) => {
   }, [favoritesPsychologists, favorites]);
 
   useEffect(() => {
-    // console.log(prevLocation);
-    // console.log(location);
     if (prevLocation !== location) {
-      // setSelectedOption(prevSelectedOption);
       const data = { favoritesPsychologists, favoritesShow, favoritesPage };
       dispatch(setFavoritesCurrentState(data));
     }
@@ -77,15 +68,7 @@ const FavoritesPage = ({ location, setCount, countFavorites }) => {
     const database = getDatabase();
     const dbRef = ref(database);
 
-    // let startItem = String(page * limit - 1);
-    // let endItem = String(page * limit + limit - 1);
-
-    const currentQuery = query(
-      dbRef,
-      orderByKey()
-      // startAfter(startItem),
-      // endAt(endItem)
-    );
+    const currentQuery = query(dbRef, orderByKey());
     if (favoritesPage === 0 || prevCountFavorites !== countFavorites) {
       onValue(currentQuery, (snapshot) => {
         const data = snapshot.val();
@@ -143,12 +126,6 @@ const FavoritesPage = ({ location, setCount, countFavorites }) => {
   }, [getData, getSortedData, selectedOption]);
 
   useEffect(() => {
-    // console.log(prevLocation);
-    // console.log(location);
-    // console.log(page);
-    // if (prevLocation !== location && favoritesPage > 0) {
-    //   return;
-    // } else {
     if (favoritesPsychologists.length && prevLocation === location) {
       const data = favoritesPsychologists.slice(
         favoritesPage * limit,
@@ -156,17 +133,7 @@ const FavoritesPage = ({ location, setCount, countFavorites }) => {
       );
       dispatch(setFavoritesShow(data));
     }
-    // }
-    // console.log(selectedOption, prevSelectedOption);
-  }, [
-    favoritesPsychologists,
-    favoritesPage,
-    dispatch,
-    prevLocation,
-    location,
-    // selectedOption,
-    // prevSelectedOption,
-  ]);
+  }, [favoritesPsychologists, favoritesPage, dispatch, prevLocation, location]);
 
   return (
     <>
@@ -175,11 +142,7 @@ const FavoritesPage = ({ location, setCount, countFavorites }) => {
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}
       />
-      <Psychologists
-        location={location}
-        setCountFavorites={setCount}
-        // countFavorites={countFavorites}
-      />
+      <Psychologists location={location} setCountFavorites={setCount} />
       <LoadMore location={location} />
     </>
   );

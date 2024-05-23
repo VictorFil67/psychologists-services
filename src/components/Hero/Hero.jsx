@@ -22,6 +22,7 @@ export const Hero = () => {
         <button
           className={s.getStarted}
           onClick={() => navigate("/psychologists")}
+          aria-label="Get started"
         >
           Get started
           <SvgGetStarted />

@@ -20,7 +20,7 @@ export const NoAccess = ({ close }) => {
   return (
     <div className={s.overlay} onClick={handleClick}>
       <div className={s.modal}>
-        <button className={s.closeButton} onClick={close}>
+        <button className={s.closeButton} onClick={close} aria-label="close">
           <SvgClose />
         </button>
         <h1>No access! For authorized users only!</h1>

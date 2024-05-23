@@ -22,7 +22,6 @@ export const PsychologistCard = ({
   reviews,
   specialization,
   setCountFavorites,
-  // countFavorites,
 }) => {
   const [readMore, setReadMore] = useState(false);
   const [modal, setModal] = useState(false);
@@ -74,7 +73,11 @@ export const PsychologistCard = ({
                 </p>
               </li>
               <li className={s.cardInfoItem}>
-                <button className={s.heart} onClick={user ? handleClick : open}>
+                <button
+                  className={s.heart}
+                  onClick={user ? handleClick : open}
+                  aria-label="add(remove) to(from) favorites"
+                >
                   <SvgHeart className={heart ? s.svgHeart : ""} />
                 </button>
               </li>
@@ -113,7 +116,11 @@ export const PsychologistCard = ({
           </div>
           <p className={s.about}>{about}</p>
           {!readMore ? (
-            <button className={s.readMoreButton} onClick={setReadMore}>
+            <button
+              className={s.readMoreButton}
+              onClick={setReadMore}
+              aria-label="Read more"
+            >
               Read more
             </button>
           ) : (

@@ -17,7 +17,6 @@ import s from "./Layout.module.css";
 import AvatarIconSvg from "../../images/SvgAvatarIcon";
 import SvgBurgerMenu from "../../images/SvgBurgerMenu";
 import SvgClose from "../../images/modalIcons/SvgClose";
-// import { Mobile } from "../Mobile/Mobile";
 
 export const Layout = () => {
   const [modalRegistration, setModalRegistration] = useState(false);
@@ -50,7 +49,6 @@ export const Layout = () => {
   }
   function getExit() {
     const auth = getAuth();
-    // setPersistence(auth, inMemoryPersistence)
     signOut(auth)
       .then(() => {
         dispatch(logout());
@@ -61,7 +59,6 @@ export const Layout = () => {
         const errorMessage = error.message;
         toast.error(errorMessage);
       });
-    // dispatch(logout());
   }
   function handleExit() {
     getExit();
@@ -87,7 +84,7 @@ export const Layout = () => {
                 : s.headerWrap + " " + s.largeGap
             }
           >
-            <Link to={"/"} className={s.logo}>
+            <Link to={"/"} className={s.logo} aria-label="Link to home page">
               <span className={s.logoSpan}>psychologists.</span>services
             </Link>
             {mobileMenu && (
@@ -108,6 +105,7 @@ export const Layout = () => {
                   onClick={() => {
                     setMobileMenu(false);
                   }}
+                  aria-label="Link to home page"
                 >
                   Home
                 </NavLink>
@@ -117,6 +115,7 @@ export const Layout = () => {
                   onClick={() => {
                     setMobileMenu(false);
                   }}
+                  aria-label="Link to psychologists page"
                 >
                   Psychologists
                 </NavLink>
@@ -127,12 +126,12 @@ export const Layout = () => {
                     onClick={() => {
                       setMobileMenu(false);
                     }}
+                    aria-label="Link to favorites page"
                   >
                     Favorites
                   </NavLink>
                 )}
               </nav>
-              {/* </div> */}
               <div className={s.buttonsWrap}>
                 {!user ? (
                   <>
@@ -141,6 +140,7 @@ export const Layout = () => {
                       onClick={() => {
                         toggle(setModalLogIn);
                       }}
+                      aria-label="login"
                     >
                       Log In
                     </button>
@@ -149,6 +149,7 @@ export const Layout = () => {
                       onClick={() => {
                         toggle(setModalRegistration);
                       }}
+                      aria-label="registration"
                     >
                       Registration
                     </button>
@@ -159,34 +160,28 @@ export const Layout = () => {
                       <AvatarIconSvg />
                       <p className={s.username}>{user?.name ?? "user"}</p>
                     </div>
-                    <button className={s.logoutButton} onClick={handleExit}>
+                    <button
+                      className={s.logoutButton}
+                      onClick={handleExit}
+                      aria-label="log out"
+                    >
                       Log Out
                     </button>
                   </>
                 )}
               </div>
             </div>
-            {/* </div> */}
             <button
               className={s.menuButton}
               onClick={() => {
                 open(setMobileMenu);
               }}
+              aria-label="menu button"
             >
               <SvgBurgerMenu />
             </button>
             {modalLogIn && <LoginForm close={close} />}
             {modalRegistration && <RegisterForm close={close} />}
-            {/* {mobileMenu && (
-              // <Mobile
-              //   // mobileMenu={mobileMenu}
-              //   close={close}
-              //   // open={open}
-              //   // setModalLogIn={setModalLogIn}
-              //   // setModalRegistration={setModalRegistration}
-              //   // getExit={getExit}
-              // />
-            )} */}
           </div>
         </div>
       </header>

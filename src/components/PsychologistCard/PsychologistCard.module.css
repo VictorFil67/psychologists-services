@@ -39,16 +39,13 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  /* max-width: 140px; */
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  /* justify-content: space-between; */
   margin-bottom: 8px;
 }
 @media only screen and (min-width: 768px) {
   .cardInfo {
-    /* max-width: 340px; */
     position: static;
     flex-direction: row;
     justify-content: space-between;
@@ -70,8 +67,6 @@
   .cardInfoList {
     flex-direction: row;
     gap: 0;
-    /* justify-content: space-between;
-    margin-bottom: 8px; */
   }
 }
 .cardInfoItem {
@@ -79,10 +74,6 @@
   align-items: center;
   justify-content: flex-end;
   &:nth-child(1) {
-    /* border-right: 1px solid rgba(25, 26, 21, 0.2); */
-    /* padding-right: 16px;
-    margin-right: 16px; */
-    /* justify-content: flex-end; */
     p {
       padding-left: 8px;
     }
@@ -90,9 +81,6 @@
 }
 @media only screen and (min-width: 768px) {
   .cardInfoItem {
-    /* display: flex; */
-    /* align-items: flex-end; */
-
     &:nth-child(1) {
       border-right: 1px solid rgba(25, 26, 21, 0.2);
       padding-right: 16px;

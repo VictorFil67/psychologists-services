@@ -6,7 +6,6 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { setUser } from "./store/auth/authSlice";
 import { selectUser } from "./store/auth/selectors";
-// import { toast } from "react-toastify";
 import PrivateRoute from "./routes/PrivateRoute";
 import { selectFavorites } from "./store/psychologists/selectors";
 import { Loader } from "./components/Loader/Loader";
@@ -54,7 +53,6 @@ function App() {
           setLoading(false);
         } else {
           setLoading(false);
-          // toast.info("User is signed out");
         }
       });
     }

@@ -3,15 +3,11 @@ import SvgClose from "../../images/modalIcons/SvgClose";
 import s from "./Appointment.module.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import { BasicTimePicker } from "../MeetingTime/MeetingTime";
 import { useState } from "react";
-// import { Time } from "../Time/Time";
-// import BasicTimePicker from "../MeetingTime/MeetingTime";
 
 const schema = yup.object({
   name: yup
     .string()
-    // .min(5)
     .max(32, "The name must contain a maximum of 32 characters")
     .required("The name is required"),
   email: yup
@@ -29,12 +25,8 @@ const schema = yup.object({
   time: yup
     .string()
     .notOneOf(["00:00"], "Please specify the time")
-    // .min("00:01", "The time must be chosen")
     .required("The time is required"),
-  comment: yup
-    .string()
-    // .max(10, "The comment must contain a maximum of 10 characters")
-    .required("The comment is required"),
+  comment: yup.string().required("The comment is required"),
 });
 
 export const Appointment = ({ close, name, avatar_url }) => {
@@ -72,7 +64,7 @@ export const Appointment = ({ close, name, avatar_url }) => {
   return (
     <div className={s.overlay} onClick={handleClick}>
       <div className={s.modal}>
-        <button className={s.CloseBtn} onClick={close}>
+        <button className={s.CloseBtn} onClick={close} aria-label="close">
           <SvgClose />
         </button>
         <h2 className={s.title} data-appointment="">
@@ -104,7 +96,6 @@ export const Appointment = ({ close, name, avatar_url }) => {
               {...register("name")}
               type="text"
               placeholder="Name"
-              // name="name"
             />
             <span className={s.error}>{errors.name?.message}</span>
           </div>
@@ -115,7 +106,6 @@ export const Appointment = ({ close, name, avatar_url }) => {
                 {...register("tel")}
                 type="tel"
                 placeholder="+380"
-                //   name="tel"
               />
               <span className={s.error}>{errors.tel?.message}</span>
             </div>
@@ -128,8 +118,6 @@ export const Appointment = ({ close, name, avatar_url }) => {
                 value={value}
                 onChange={handleChange}
               />
-              {/* <Time /> */}
-              {/* <BasicTimePicker /> */}
               <span className={s.error}>{errors.time?.message}</span>
             </div>
           </div>
@@ -139,7 +127,6 @@ export const Appointment = ({ close, name, avatar_url }) => {
               {...register("email")}
               type="text"
               placeholder="Email"
-              // name="email"
             />
             <span className={s.error}>{errors.email?.message}</span>
           </div>
@@ -148,11 +135,10 @@ export const Appointment = ({ close, name, avatar_url }) => {
               className={s.textarea}
               {...register("comment")}
               placeholder="Comment"
-              // name="comment"
             ></textarea>
             <span className={s.error}>{errors.comment?.message}</span>
           </div>
-          <button className={s.button} type="submit">
+          <button className={s.button} type="submit" aria-label="Send">
             Send
           </button>
         </form>
