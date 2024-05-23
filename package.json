@@ -17,6 +17,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@mui/material": "^5.15.18",
     "@mui/x-date-pickers": "^7.5.0",
+    "@react-input/mask": "^1.2.4",
     "@reduxjs/toolkit": "^2.2.3",
     "dayjs": "^1.11.11",
     "firebase": "^10.11.1",

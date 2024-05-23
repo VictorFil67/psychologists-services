@@ -4,6 +4,7 @@ import s from "./Appointment.module.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+// import { useMask } from "@react-input/mask";
 
 const schema = yup.object({
   name: yup
@@ -40,10 +41,16 @@ export const Appointment = ({ close, name, avatar_url }) => {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+
   function onSubmit(data) {
     console.log(data);
     alert(`You made the appointment with ${name} at ${data.time}`);
   }
+
+  // const inputRef = useMask({
+  //   mask: "+380 (__) ___-__-__",
+  //   replacement: { _: /\d/ },
+  // });
 
   function handleClick(e) {
     if (e.target === e.currentTarget) {
@@ -104,8 +111,9 @@ export const Appointment = ({ close, name, avatar_url }) => {
               <input
                 className={s.input}
                 {...register("tel")}
-                type="tel"
+                type="text"
                 placeholder="+380"
+                // ref={inputRef}
               />
               <span className={s.error}>{errors.tel?.message}</span>
             </div>
