@@ -78,7 +78,7 @@ export const PsychologistCard = ({
                   onClick={user ? handleClick : open}
                   aria-label="add(remove) to(from) favorites"
                 >
-                  <SvgHeart className={heart ? s.svgHeart : ""} />
+                  <SvgHeart className={user ? (heart ? s.svgHeart : "") : ""} />
                 </button>
               </li>
             </ul>
