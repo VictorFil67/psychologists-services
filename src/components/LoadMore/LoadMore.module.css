@@ -9,4 +9,7 @@
   padding: 14px 48px;
   color: white;
   margin: 0 auto;
+  &:hover {
+    background-color: var(--hover-green);
+  }
 }
