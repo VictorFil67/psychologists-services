@@ -92,18 +92,6 @@ const PsychologistsPage = ({ location, setCount }) => {
       });
     }
   }, [dispatch, page, location, prevLocation]);
-  // the second one
-  // useEffect(() => {
-  //   const getData = () => {
-  //     const database = getDatabase();
-  //     const dbRef = ref(database);
-  //     onValue(dbRef, (snapshot) => {
-  //       const data = snapshot.val();
-  //       setDataDb(data);
-  //     });
-  //   };
-  //   getData();
-  // }, []);
 
   const getSortedData = useCallback(() => {
     const database = getDatabase();

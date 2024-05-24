@@ -57,7 +57,6 @@ export const Filters = ({ selectedOption, setSelectedOption }) => {
               ":active": {
                 transform: "rotate(0deg)",
               },
-              // },
             }),
             option: (b, s) => ({
               ...b,

@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -12,5 +11,4 @@ const firebaseConfig = {
   databaseURL: import.meta.env.VITE_FAREBASE_DATABASE_URL,
 };
 
-// Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
