@@ -19,7 +19,6 @@
   .container {
     max-width: 1280px;
     margin: 0 auto;
-    /* padding: 0 48px; */
   }
 }
 @media only screen and (min-width: 1280px) {
@@ -66,9 +65,19 @@
   font-size: 20px;
   line-height: 120%;
   letter-spacing: -0.02em;
+  &:hover,
+  &:focus {
+    .logoSpan {
+      color: var(--black);
+    }
+  }
 }
 .logoSpan {
   color: var(--green);
+  &:hover,
+  &:focus {
+    color: var(--black);
+  }
 }
 .mobileOverlay {
   position: fixed;
@@ -78,15 +87,8 @@
   width: 100%;
   height: 100%;
   background-color: #12121266;
-  /* /* opacity: 1; */
-  /* pointer-events: none; */
-  /* visibility: hidden; */
-  /* transition: opacity 0.3s ease-in, visibility 0.3s ease-in;
-  transition-delay: 0.3s; */
 }
-/* .notMobileOverlay {
-  position: relative;
-} */
+
 .navWrap {
   position: fixed;
   top: 0;
@@ -146,22 +148,18 @@
 @media only screen and (min-width: 768px) {
   .nav {
     position: relative;
-    /* display: flex; */
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    /* min-width: 300px; */
     padding-top: 0;
     border: none;
     box-shadow: none;
     background-color: transparent;
-    /* transform: translateX(0); */
   }
 }
 @media only screen and (min-width: 1280px) {
   .nav {
     position: relative;
-    /* display: flex; */
     flex-direction: row;
     align-items: center;
     gap: 40px;
@@ -170,7 +168,6 @@
     border: none;
     box-shadow: none;
     background-color: transparent;
-    /* transform: translateX(0); */
   }
 }
 .buttonsWrap {
@@ -185,20 +182,7 @@
     gap: 8px;
   }
 }
-/* .loginButton {
-  padding: 5px 10px;
-  border: 1px solid rgba(25, 26, 21, 0.2);
-  border-radius: 20px;
-  white-space: nowrap;
-  font-weight: 500;
-  line-height: 125%;
-  letter-spacing: -0.01em;
-  color: var(--black);
-  display: flex;
-  place-items: center;
-  background-color: transparent;
-} */
-/* @media only screen and (min-width: 768px) { */
+
 .loginButton {
   padding: 14px 40px;
   border: 1px solid rgba(25, 26, 21, 0.2);
@@ -214,26 +198,7 @@
   place-items: center;
   background-color: transparent;
 }
-/* } */
-/* .registrationButton {
-  color: var(--black);
-  border: 1px solid var(--light-green);
-  padding: 5px 10px;
-  border-radius: 20px;
-  white-space: nowrap;
-  background: var(--green);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  letter-spacing: -0.01em;
-  color: var(--white);
-  display: flex;
-  place-items: center;
-  &:hover {
-    background-color: var(--hover-green);
-  }
-} */
-/* @media only screen and (min-width: 768px) { */
+
 .registrationButton {
   color: var(--black);
   border: 1px solid var(--light-green);
@@ -250,14 +215,12 @@
   color: var(--white);
   display: flex;
   place-items: center;
-  /* cursor: pointer; */
   transition: all 0.3s;
 
   &:hover {
     background-color: var(--hover-green);
   }
 }
-/* } */
 .logoutButton {
   padding: 14px 40px;
   border: 1px solid rgba(25, 26, 21, 0.2);
@@ -332,7 +295,6 @@
 }
 .menuButton {
   display: block;
-  /* margin-left: auto; */
   width: 28px;
   height: 24px;
   background-color: transparent;

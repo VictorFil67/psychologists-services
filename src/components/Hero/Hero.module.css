@@ -10,7 +10,6 @@
     flex-direction: row;
     align-items: center;
     margin-top: 38px;
-    /* gap: 45px; */
   }
 }
 @media only screen and (min-width: 1280px) {
@@ -29,7 +28,6 @@
 }
 @media only screen and (min-width: 768px) {
   .leftSide {
-    /* width: 50%; */
     display: block;
     max-width: 50%;
   }
@@ -116,13 +114,7 @@
   top: 38px;
   right: -4px;
 }
-/* @media only screen and (min-width: 768px) {
-  .svgUsers {
-    position: absolute;
-    top: 38px;
-    right: -44px;
-  }
-} */
+
 @media only screen and (min-width: 1280px) {
   .svgUsers {
     position: absolute;
@@ -160,28 +152,18 @@
 }
 @media only screen and (min-width: 768px) {
   .experience {
-    /* position: absolute; */
     bottom: 70px;
     right: -20px;
-    /* background-color: var(--green); */
     padding: 12px;
-    /* border-radius: 20px; */
-    /* display: flex; */
-    /* gap: 16px; */
     align-items: center;
     max-width: 311px;
-    /* transform: rotate(0deg); */
   }
 }
 @media only screen and (min-width: 1280px) {
   .experience {
-    /* position: absolute; */
     bottom: 75px;
     left: -101px;
-    /* background-color: var(--green); */
     padding: 32px;
-    /* border-radius: 20px; */
-    /* display: flex; */
     gap: 16px;
     align-items: center;
     max-width: 311px;
@@ -217,9 +199,6 @@
 @media only screen and (min-width: 768px) {
   .infoWrap {
     max-width: 200px;
-    /* display: flex;
-    flex-direction: column;
-    gap: 8px; */
   }
 }
 .infoText {

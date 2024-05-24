@@ -52,9 +52,6 @@
   min-width: 100%;
   margin-bottom: 15px;
   margin-top: 25px;
-  /* &[data-appointment=""] {
-    max-width: 472px;
-  } */
 }
 @media only screen and (min-width: 768px) {
   .title {
@@ -68,12 +65,8 @@
   line-height: 1.25;
   color: rgba(25, 26, 21, 0.5);
   margin-bottom: 20px;
-  /* width: 238px; */
   min-width: 100%;
   max-width: 472px;
-  /* &[data-appointment=""] {
-    max-width: 472px;
-  } */
 }
 @media only screen and (min-width: 768px) {
   .text {
@@ -95,8 +88,6 @@
 .psychologistImg {
   border-radius: 15px;
   background-color: #e0e0e0;
-  /* width: 44px;
-height: 44px; */
 }
 .psychologistInfo {
   display: flex;
@@ -152,12 +143,6 @@ height: 44px; */
     padding: 16px 18px;
   }
 }
-.error {
-  color: red;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.29;
-}
 .box {
   display: flex;
   gap: 8px;
@@ -178,8 +163,6 @@ height: 44px; */
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  /* gap: 8px; */
-  /* max-width: 232px; */
 }
 .textarea {
   padding: 8px 18px;
@@ -212,16 +195,12 @@ height: 44px; */
   background-color: var(--green);
   color: var(--white);
   transition: all 0.3s;
-  /* max-width: 472px; */
   white-space: nowrap;
   line-height: 1.25;
 
   &:hover {
     background-color: var(--hover-green);
   }
-  /* &[data-appointment=""] {
-    max-width: 472px;
-  } */
 }
 @media only screen and (min-width: 768px) {
   .button {
