@@ -20,7 +20,8 @@ const schema = yup.object({
     .required("The email is required"),
   tel: yup
     .string()
-    .min(12, "The phone must contain a minimum of 12 characters"),
+    .min(12, "The phone must contain a minimum of 12 characters")
+    .required("Phone number is required"),
   time: yup
     .string()
     .notOneOf(["00:00"], "Please specify the time")
@@ -107,7 +108,7 @@ export const Appointment = ({ close, name, avatar_url }) => {
               <input
                 className={s.input}
                 {...register("tel")}
-                type="text"
+                type="tel"
                 placeholder="+380"
                 value={tel}
                 onChange={handleChangeTel}
